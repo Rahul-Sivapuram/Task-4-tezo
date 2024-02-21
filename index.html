@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tezo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <div class="sidebar-smallsidebar">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-toppart">
+                <div class="logo-arrow">
+                    <img src="assets/images/tezo.png" alt="Tezo logo" class="logo">  
+                    <img src="assets/images/handle.png" alt="Back button" class="backbutton" onclick=app.obj5.hideSidebar()>     
+                </div>     
+                <div class="sidebar-buttons">
+                    <h3 class="heading">ALL</h3>
+                    <div class="special-button" onclick="app.obj5.showEmptyDisplay()">
+                        <div class="dashboard-seperate">
+                            <div class="dash-left">
+                                <img src="assets/svg/dashboard.svg" alt="Dashboard symbol" srcset="">
+                                <span>Dashboard</span>
+                            </div>
+                            <div class="dash-right">
+                                <img src="assets/svg/arrowforward.svg" alt="Arrow symbol">
+                            </div>
+                        </div>
+                        <div class="corner-line"></div>
+                    </div>
+                    <div class="special-button" onclick="app.obj5.showDropDown();app.obj5.showEmp();">
+                        <div class="dashboard-seperate">
+                            <div class="dash-left">
+                                <img src="assets/svg/employees.svg" alt="Employees symbol" srcset="">
+                                <span class="employee-seperate">Employees</span>
+                            </div>
+                            <div class="dash-seperate-right">
+                                <img src="assets/svg/arrowforward.svg" alt="Arrow symbol" class="arrow">
+                            </div>
+                        </div>
+                        <div class="corner-line"></div>
+                    </div>
+                
+                    <ul class="userstatus-menu">
+                        <li>
+                            <div class="department-button-left" onclick=app.showTableRows()>
+                                <div class="grey-dot"></div>
+                                <span>All</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="department-button-left" onclick="app.showSpecific('Active','STATUS')">
+                                <div class="grey-dot"></div>
+                                <span>Active</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="department-button-left" onclick="app.showSpecific('Inactive','STATUS')">
+                                <div class="grey-dot"></div>
+                                <span>InActive</span>
+                            </div>
+                        </li>
+                        <br>
+                        <h3 class="sep-heading" style="margin-left: .5rem;">DEPARTMENTS</h3>
+                        <div class="department-button" onclick="app.showSpecific('IT','DEPARTMENT')">
+                            <div class="department-button-left">
+                                <div class="grey-dot"></div>
+                                IT
+                            </div>
+                            <div class="department-button-square-one">
+                                
+                            </div>
+                        </div>
+                        <div class="department-button" onclick="app.showSpecific('UIUX','DEPARTMENT')">
+                            <div class="department-button-left">
+                                <div class="grey-dot"></div>
+                                UIUX
+                            </div>
+                            <div class="department-button-square-two">
+                               
+                            </div>
+                        </div>
+                        <div class="department-button">
+                            <div class="department-button-left" onclick="app.showSpecific('ProductEngg','DEPARTMENT')">
+                                <div class="grey-dot"></div>
+                                Product Engg
+                            </div>
+                            <div class="department-button-square-three">
+                                
+                            </div>
+                        </div>
+                        
+                    </ul>
+            
+                    <!-- ROLE/USER MANAGEMENT -->
+                    <h3 class="heading">ROLE / USER MANAGEMENT</h3>
+                    <div class="special-button">
+                        <div class="dashboard-seperate" onclick=app.obj2.showRole()>
+                            <div class="dash-left">
+                                <img src="assets/svg/settingsblack.svg" alt="Setting symbol" srcset="">
+                                <span>Roles</span>
+                            </div>
+                            <div class="dash-right">
+                                <img src="assets/svg/arrowforward.svg" alt="Arrow symbol" class="arrow">
+                            </div>
+                        </div>
+                        <div class="corner-line"></div>
+                    </div>
+                
+                    <div class="special-button">
+                        <div class="dashboard-seperate">
+                            <div class="dash-left">
+                            <img src="assets/svg/account.svg" alt="Account symbol" srcset="">
+                                <span>Access Rights</span>
+                            </div>
+                            <div class="dash-right">
+                                <img src="assets/svg/arrowforward.svg" alt="Arrow symbol" class="arrow">
+                            </div>
+                        </div>
+                        <div class="corner-line"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- update section -->
+            <div class="update-section">
+                <span class="install">Install new update 2.3.1A</span>
+                <p>Allow to launch the new update<br>for the AD application</p>
+                <div class="update-buttons">
+                    <div class="dismiss-button">
+                        <span>Dismiss</span>
+                    </div>
+                    <div class="accept-button">
+                        <span>Accept</span>
+                    </div>
+                </div>
+            </div>             
+        </div>
+
+        <div class="small-sidebar">
+            <div onclick=app.obj5.showSidebar() class="menu">
+                <img src="assets/images/handle.png" alt="Arrow menu" srcset="" class="hamburger">
+            </div>
+            <img src="assets/svg/dashboard.svg" alt="Arrow icon" height="15px" width="15px">
+            <img src="assets/svg/employees.svg" alt="GroupOfEmployees icon" height="15px" width="15px" onclick=app.obj5.showEmp()>
+            <img src="assets/svg/settingsgrey.svg" alt="Settings icon" height="15px" width="15px" onclick=app.showRole()>
+            <img src="assets/svg/account.svg" alt="Account icon" height="15px" width="15px">
+        </div>
+    </div>
+    
+    <div class="navbar-pages">
+        <!-- Navbar -->
+        <div class="header-searchbar">
+            <div class="search-field">
+                <img src="assets/images/bxsearch.png" alt="Search symbol">
+                <input type="search" name="search"  id="search" placeholder="Search (Ctrl+/)" class="search-box">
+            </div>
+            <div class="profile">
+                <img src="assets/images/chineese.png" alt="Chineese symbol" srcset="">
+                <img src="assets/images/icon1.png" alt="Menu symbol" srcset="">
+                <img src="assets/images/icon2.png" alt="Moon symbol" srcset="">
+                <img src="assets/images/icon3.png" alt="Bell symbol" srcset="">                         
+            </div>
+            <div class="profile-box">
+                <div class="man">
+                    <img src="assets/images/man.jpg" alt="Human avatar" srcset="">
+                    <div class="green-dot"></div>
+                </div>
+                <span>John Abraham<br><span class="span-inside">Admin</span></span>
+                <img src="assets/svg/arrowdown.svg" alt="Dropdown icon" srcset="">
+            </div>   
+        </div>
+        
+        <!-- Employee Page -->
+        <section class="employee-page">
+            <!-- Add-Employee Section -->
+            <section class="add-employee">  
+                <div class="add-employee-conetentpart">
+                    <h2>Employees</h2>
+                    <p>Find all of your company's employee accounts and their associated roles.</p>
+                </div>
+
+                <div class="add-employee-buttons">
+                    <button class="export-button" onclick=app.obj1.addToCsv()>
+                        <img src="assets/images/upload.png" alt="Upload image" srcset="">
+                        EXPORT
+                    </button>
+                    <button class="add-employee-button" onclick=app.obj1.showAddEmployeePage()>
+                        <img src="assets/svg/pluswhite.svg" alt="Plus icon" srcset="">
+                    ADD EMPLOYEEE
+                    </button>    
+                </div>
+            </section>
+
+            <!-- addemployee page section-->
+            <section class="addemployee-page">
+                <form>
+                    <h4>Add Employee</h4>
+                    <div class="upload-pic">
+                        <img src="assets/images/profile-user.png" alt="Profile symbol" class="profilepic" width="64px" height="64px">
+                        <label for="addFilePicker" class="add-uploadpic">Upload Profile Pic</label> 
+                        <input type="file"  id="addFilePicker" accept="image/*">
+                    </div>
+                    <h5>Personal Information</h5>
+                    <div class="text-field">
+                        <label for="emp-number">Emp No</label>
+                        <input type="text" name="emp-number" id="emp-number" placeholder="Enter your Employee Number"  onfocus="this.style.borderColor = '#4c9aff';" required>
+                    </div>
+
+                    <div class="emp-details">
+                        <div class="text-field">
+                            <label for="first-name">First Name</label>
+                            <input type="text" name="first-name" id="first-name" placeholder="Enter Your FirstName" onfocus="this.style.borderColor = '#4c9aff';" required>
+                        </div>
+                        
+                        <div class="text-field">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" name="last-name" id="last-name" placeholder="Enter Your LastName" onfocus="this.style.borderColor = '#4c9aff';" required>
+                        </div>
+
+                        <div class="text-field">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" name="dob" id="dob" required>
+                        </div>
+
+                        <div class="text-field">
+                            <label for="email-id">Email Id</label>
+                            <input type="email" name="email-id" id="email-id" placeholder="Enter your gmail" onfocus="this.style.borderColor = '#4c9aff';" required>
+                        </div>
+                        <div class="text-field">
+                            <label for="mobile-number">Mobile Number</label>
+                            <input type="tel" name="mobile-no" id="mobile-no" placeholder="Enter your MobileNo" onfocus="this.style.borderColor = '#4c9aff';" required>
+                        </div>
+                    </div>
+                    
+                    <h5>Employement Information</h5>
+                    <div class="emp-info">
+                        <div class="text-field-long">
+                            <label for="joining-date">Joining Date</label>
+                            <input type="text" name="joining-date" id="joining-date" placeholder="Enter your joiningdate" onfocus="this.style.borderColor = 'blue';" required>
+                        </div>
+
+                        <div class="text-field-long">
+                            <label for="add-select-loc">Location</label>
+                            <select id="add-select-loc">
+                                <option value="" disabled selected>Select Your Location</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Mumbai">Mumbai</option>
+                                <option value="Pune">Pune</option>
+                            </select>
+                        </div>
+                        <div class="text-field-long">
+                            <label for="add-select-jobtitle">Job Title</label>
+                            <select id="add-select-jobtitle">
+                                <option value="" disabled selected>Select Job Title</option>
+                                <option value="UX Designer">UX Designer</option>
+                                <option value="Full Stack Developer">Full Stack Developer</option>
+                                <option value="app Developer">app Developer</option>
+                            </select>
+                        </div>
+                        <div class="text-field-long">
+                            <label for="add add-select-department">Department</label>
+                            <select id="add-select-department">
+                                <option value="" disabled selected>Select Department</option>
+                                <option value="ProductEngg">Product Engg</option>
+                                <option value="UIUX">UI/UX</option>
+                                <option value="IT">IT</option>
+                            </select>
+                        </div>
+                        <div class="text-field-long">
+                            <label for="managers">Assign Manager</label>
+                            <select id="managers">
+                                <option value="" disabled selected>Select Manager</option>
+                                <option value="Hasnu Zama">Hasnu Zama</option>
+                                <option value="Ram">Ram</option>
+                            </select>
+                        </div>
+                        <div class="text-field-long">
+                            <label for="">Assign Project</label>
+                            <select id="projects" name="projects">
+                                <option value="" disabled selected>Select Project</option>
+                                <option value="Cisco">Cisco</option>
+                                <option value="Amazon">Amazon</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="add-buttons">
+                        <button class="add-dismiss-button" onclick=app.obj1.showAddEmployeePage()>
+                            <span>Dismiss</span>
+                        </button>
+                        <button class="add-accept-button" type="submit" onclick=app.obj3.addEmployeeData(event)>
+                            <span>Accept</span>
+                        </button>
+                    </div>
+                    <br>
+                </form>
+                <div class="toast-employee">
+                    Added Successfully!
+                </div>
+            </section>
+
+            <section class="table-part">
+                <!--Filter By Alphabet Section -->
+                <section class="filter">
+                    <img src="assets/images/filterblack.png" alt="Filter icon" class="filter-image">
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('A')">
+                        <span>A</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('B')">
+                        <span>B</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('C')">
+                        <span>C</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('D')">
+                        <span>D</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('E')">
+                        <span>E</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('F')">
+                        <span>F</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('G')">
+                        <span>G</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('H')">
+                        <span>H</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('I')">
+                        <span>I</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('J')">
+                        <span>J</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('K')">
+                        <span>K</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('L')">
+                        <span>L</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('M')">
+                        <span>M</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('N')">
+                        <span>N</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('O')">
+                        <span>O</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('P')">
+                        <span>P</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('Q')">
+                        <span>Q</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('R')">
+                        <span>R</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('S')">
+                        <span>S</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('T')">
+                        <span>T</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('U')">
+                        <span>U</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('V')">
+                        <span>V</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('W')">
+                        <span>W</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('X')">
+                        <span>X</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('Y')">
+                        <span>Y</span>
+                    </div>
+                    <div class="alphabet" onclick="app.obj1.filterByAlphabet('Z')">
+                        <span>Z</span>
+                    </div>
+                </section>
+
+                <!-- Filter Options Section -->
+                <section class="filter-option">
+                    <div class="filter-left">
+                        <div class="filter-icon">
+                            <span>Filter</span>
+                            <img src="assets/images/s3filter.png" width="15px" height="15px" alt="Filter icon">
+                        </div>
+                    </div>
+
+                    <div class="filter-right" >
+                        <button class="reset-button" onclick=app.obj1.showTableRows()>
+                            <span>Reset</span>
+                        </button>
+                        <button class="apply-button" type="submit" onclick=app.obj1.filterTableRows()>
+                            <span>Apply</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- users table section -->
+                <section class="user-section">
+                    <div class="delete-add-row">
+                        <div class="arrow-down">
+                            <img src="assets/images/downarrow.png" alt="Downarrow image" srcset="">
+                            <button class="delete-button" onclick="app.obj1.deleteRow()">
+                                <span>Delete</span>
+                            </button>
+                        </div>
+                        <img src="assets/images/tableadd.png" alt="Addtable image" srcset="">
+                    </div>
+                    <br>
+                    <table id="UserTable">
+                        <thead>
+                            <th>
+                                <input type="radio" name="checkbox1" id="checkbox1"><label for="sample"></label>
+                            </th>
+                            <th>
+                                <div class="inside-labels-user">
+                                    <span>USER</span>
+                                    <div class="arrow-sort-filter" >                            
+                                        <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px" onclick="app.obj1.sortAccordToCol('USER')">
+                                        <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.obj1.sortDecToCol('USER')">
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="inside-labels-user">
+                                    <span>LOCATION</span>
+                                    <div class="arrow-sort-filter">                            
+                                        <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px"  onclick="app.obj1.sortAccordToCol('LOCATION')">
+                                        <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.obj1.sortDecToCol('LOCATION')">
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="inside-labels-user">
+                                    <span>DEPARTMENT</span>
+                                    <div class="arrow-sort-filter" >                            
+                                        <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px" onclick="app.obj1.sortAccordToCol('DEPARTMENT')">
+                                        <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.obj1.sortDecToCol('DEPARTMENT')">
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="inside-labels-user">
+                                    <span>ROLE</span>
+                                    <div class="arrow-sort-filter" >                            
+                                        <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px" onclick="app.obj.sortAccordToCol('ROLE')">
+                                        <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.obj.sortDecToCol('ROLE')">
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="inside-labels-user">
+                                    <span>EMP NO</span>
+                                    <div class="arrow-sort-filter" >                            
+                                        <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px" onclick="app.obj1.sortAccordToCol('EMPNO')">
+                                        <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.obj1.sortDecToCol('EMPNO')">
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="inside-labels-user">
+                                    <span>STATUS</span>
+                                    <div class="arrow-sort-filter" >                            
+                                        <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px" onclick="app.obj1.sortAccordToCol('STATUS')">
+                                        <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.obj1.sortDecToCol('STATUS')">
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="inside-labels-user">
+                                    <span>JOIN DT</span>
+                                    <div class="arrow-sort-filter" >                            
+                                        <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px" onclick="app.obj1.sortAccordToCol('JOINDT')">
+                                        <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.obj1.sortDecToCol('JOINDT')">
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <img src="assets/svg/threedots.svg" alt="Threedots symbol">
+                            </th>
+                        </thead>
+                        <tbody>
+                        
+                        </tbody>
+                    </table>    
+                </section>
+            </section>
+        </section>
+
+        <!-- Role Page -->
+        <section class="role-page">
+            <!-- Roles/Employees section -->
+            <section class="add-role">
+                <div class="add-employee-conetentpart">
+                    <div class="add-emp-heading" onclick=app.obj2.showRole()>
+                        Roles
+                    <img src="assets/svg/arrowforwardviolet.svg" alt="Arrow symbol">
+                        Employees
+                    </div>
+                    <span>All the roles are configured here</span>
+                </div>
+                
+                <button class="add-employee-button">
+                <img src="assets/svg/pluswhite.svg" alt="PLus symbol" srcset="">
+                    ADD EMPLOYEEE
+                </button>    
+            </section>
+
+            <section class="role-description">
+                <h4>Role Description</h4>
+                <p class="role-description-p">Configure the providers that are available to users when they sign in.Configure the providers that are available to users when they sign in.Configure the providers that are available to users when they sign in.Configure the providers that are available to users when they sign in</p>
+            </section>
+
+            <!-- Info card list section -->
+            <section class="info-cards-list-2">
+            </section>
+        </section>
+
+        <!-- Role Details Page -->
+        <section class="roledetails-page">
+            <!-- Roles/Employees section -->
+            <section class="add-roledetails">
+                <div class="add-employee-conetentpart">
+                    <div class="add-role-heading">
+                        Roles
+                    </div>
+                    <span>All the roles are configured here</span>
+                </div>
+                
+                <button class="add-role-button" onclick=app.obj2.showAddRolePage()>
+                    <img src="assets/svg/pluswhite.svg" alt="Plus symbol">
+                    ADD ROLE
+                </button>    
+            </section>
+            
+            <!-- Filter section -->
+            <section class="filterrole">
+                <div class="filterrole-left">
+                    <div class="filterrole-icon">
+                        <span>Filter</span>
+                        <img src="assets/images/s3filter.png" width="15px" height="15px" alt="Filter icon">
+                    </div>
+                    <div class="department-selection">
+                        <select name="departments" id="role-departments">
+                            <option value="Department" selected>Department</option>
+                            <option value="IT">IT</option>
+                            <option value="Product Engg.">Product Engg.</option>
+                            <option value="UIUX">UIUX</option>
+                        </select>
+                    </div>
+                    <div class="location-selection">
+                        <select name="location" id="role-location">
+                            <option value="location">Location</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Delhi">Delhi</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filterrole-right">
+                    <button class="role-reset-button" onclick=app.obj2.showCards()>
+                        Reset
+                    </button>
+                    <button class="role-apply-button" onclick=app.obj2.filter()>
+                        Apply
+                    </button>
+                </div>
+            </section>
+
+            <section class="addnewrole-page">
+                <form>    
+                    <h4>Create New Role</h4>
+                    <div class="row-one">
+                        <div class="text-field">
+                            <label for="role-name">Role Name</label>
+                            <input type="text" name="role-name" id="role-rolename" placeholder="Enter RoleName" required>
+                        </div>
+                        <div class="text-field">
+                            <label for="role-selectdepartment">Department</label>
+                            <select name="department" class="seperate-select" id="role-selectdepartment">
+                                <option value="" disabled selected>Select Department</option>
+                                <option value="UIUX">UIUX Designer</option>
+                                <option value="IT">IT</option>
+                                <option value="ProductEngg">Product Engg</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="textarea-section">
+                        <div class="text-field-seperate">
+                            <label for="role-description">Description</label>
+                            <textarea name="description" placeholder="Text" id="role-description" rows="10" cols="67"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="text-field">
+                        <label for="role-selectlocation">Location</label>
+                        <select name="location" id="role-selectlocation" required>
+                            <option value="" disabled selected>Select Your Location</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Delhi">Delhi</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="">Assign employees</label>
+                        <div class="search-dropdown">
+                            <input type="text" name="searchemp" id="searchemp" placeholder="Search for an employee">
+                            <span id="searchPlaceholder"></span>
+                            <img src="assets/images/arrowdown.png" alt="Arrowdown symbol" width="10px" height="10px" onclick=app.showFieldDropdown()>
+                        </div>
+
+                        <div class="checkbox-dropdownlist">
+                            <div class="checkbox-items">
+                                <div class="checkbox-items-left">
+                                    <img src="assets/images/man.jpg" alt="Human image" class="dropdown-profile">
+                                    <span>app Sivapuram</span>
+                                </div>
+                                <input type="checkbox" value="app Sivapuram" name="dp-empdetails"  id="dp-empdetails">
+                            </div>
+                            <div class="checkbox-items">
+                                <div class="checkbox-items-left">
+                                    <img src="assets/images/man.jpg" alt="Human image" class="dropdown-profile">
+                                    <span>John Doe</span>
+                                </div>
+                                <input type="checkbox" value="John Doe" name="dp-empdetails"  id="dp-empdetails">
+                            </div>
+                            <div class="checkbox-items">
+                                <div class="checkbox-items-left">
+                                    <img src="assets/images/man.jpg" alt="Human image" class="dropdown-profile">
+                                    <span>Eric</span>
+                                </div>
+                                <input type="checkbox" value="Eric" name="dp-empdetails"  id="dp-empdetails">
+                            </div>
+                            <div class="checkbox-items">
+                                <div class="checkbox-items-left">
+                                    <img src="assets/images/man.jpg" alt="Human image" class="dropdown-profile">
+                                    <span>Alex Pearson</span>
+                                </div>
+                                <input type="checkbox" value="Alex Pearson" name="dp-empdetails"  id="dp-empdetails">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="role-buttons">
+                        <button class="role-dismiss-button" onclick=app.obj2.showAddRolePage()>
+                            <span>Dismiss</span>
+                        </button>
+                        <button class="role-accept-button" onclick=app.obj4.addRoleData(event)>
+                            <span>Accept</span>
+                        </button>
+                    </div>
+                </form>
+                <div class="toast-role">
+                    Added Successfully
+                </div>
+            </section>
+
+            <!-- Info card list section -->
+            <section class="info-cards-list">
+            </section>
+        </section>
+    </div>
+    
+    <script src="./dist/main.js"></script>
+</body>
+</html>     
