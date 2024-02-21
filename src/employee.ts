@@ -52,11 +52,22 @@ export class EmployeeDetails{
             { label: "Delhi", value: "Delhi", id: "location", name: "filter-location" }
         ]
     };
-    constructor(){
-        this.handleFileInputChange();
-        this.alphabetStateChange();
-        this.createMultiSelectDropDown();
-        this.getDepartmentCount("UIUX","IT","ProductEngg");
+    insertingempdom(url:string,targetId:string){
+        fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(html => {
+            document.querySelector(targetId)!.innerHTML = html;
+                this.handleFileInputChange(),
+                this.alphabetStateChange(),
+                this.createMultiSelectDropDown(),
+                this.getDepartmentCount("UIUX","IT","ProductEngg")
+        })
+        .catch(error => console.error('Error fetching content:', error));
       }
     
     handleFileInputChange(){

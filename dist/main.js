@@ -239,11 +239,25 @@ var EmployeeDetails = /** @class */ (function () {
                 { label: "Delhi", value: "Delhi", id: "location", name: "filter-location" }
             ]
         };
-        this.handleFileInputChange();
-        this.alphabetStateChange();
-        this.createMultiSelectDropDown();
-        this.getDepartmentCount("UIUX", "IT", "ProductEngg");
     }
+    EmployeeDetails.prototype.insertingempdom = function (url, targetId) {
+        var _this = this;
+        fetch(url)
+            .then(function (response) {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+            .then(function (html) {
+            document.querySelector(targetId).innerHTML = html;
+            _this.handleFileInputChange(),
+                _this.alphabetStateChange(),
+                _this.createMultiSelectDropDown(),
+                _this.getDepartmentCount("UIUX", "IT", "ProductEngg");
+        })
+            .catch(function (error) { return console.error('Error fetching content:', error); });
+    };
     EmployeeDetails.prototype.handleFileInputChange = function () {
         var _this = this;
         var fileInput = document.getElementById("addFilePicker");
@@ -822,6 +836,32 @@ var RolePage = /** @class */ (function () {
             }
         ];
     }
+    RolePage.prototype.insertroledetailsdom = function (url, targetId) {
+        fetch(url)
+            .then(function (response) {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+            .then(function (html) {
+            document.querySelector(targetId).innerHTML = html;
+        })
+            .catch(function (error) { return console.error('Error fetching content:', error); });
+    };
+    RolePage.prototype.insertroledom = function (url, targetId) {
+        fetch(url)
+            .then(function (response) {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+            .then(function (html) {
+            document.querySelector(targetId).innerHTML = html;
+        })
+            .catch(function (error) { return console.error('Error fetching content:', error); });
+    };
     RolePage.prototype.createRoleCard = function (userInformation) {
         var infoCardContainer = document.createElement("div");
         infoCardContainer.classList.add("info-card-2");
@@ -1019,13 +1059,11 @@ var RolePage = /** @class */ (function () {
         }
     };
     RolePage.prototype.showAllEmp = function () {
-        var employeepage = document.querySelector(".employee-page");
         var roledetailspage = document.querySelector(".roledetails-page");
         var rolepage = document.querySelector(".role-page");
         this.showRoleCard();
-        if (rolepage.style.display == "none") {
+        if (!rolepage.style.display || rolepage.style.display == "none") {
             rolepage.style.display = "block";
-            employeepage.style.display = "none";
             roledetailspage.style.display = "none";
         }
         else {
@@ -1082,18 +1120,22 @@ var RolePage = /** @class */ (function () {
         }
     };
     RolePage.prototype.showRole = function () {
-        var employeepage = document.querySelector(".employee-page");
         var roledetailspage = document.querySelector(".roledetails-page");
-        var rolepage = document.querySelector(".role-page");
         if (!roledetailspage.style.display || roledetailspage.style.display == "none") {
             roledetailspage.style.display = "block";
-            employeepage.style.display = "none";
-            rolepage.style.display = "none";
         }
         else {
             roledetailspage.style.display = "none";
         }
         this.showCards();
+    };
+    RolePage.prototype.goback = function () {
+        var rolepage = document.querySelector(".role-page");
+        var roledetailspage = document.querySelector(".roledetails-page");
+        if (!rolepage.style.display || rolepage.style.display == "block") {
+            rolepage.style.display = "none";
+            roledetailspage.style.display = "block";
+        }
     };
     return RolePage;
 }());
@@ -1168,12 +1210,8 @@ var Sidebar = /** @class */ (function (_super) {
     Sidebar.prototype.showEmp = function () {
         this.showTableRows();
         var employeepage = document.querySelector(".employee-page");
-        var roledetailspage = document.querySelector(".roledetails-page");
-        var rolepage = document.querySelector(".role-page");
         if (!employeepage.style.display || employeepage.style.display == "none") {
             employeepage.style.display = "block";
-            roledetailspage.style.display = "none";
-            rolepage.style.display = "none";
         }
         else {
             employeepage.style.display = "none";
@@ -1240,7 +1278,10 @@ var sidebar_1 = __webpack_require__(/*! ./sidebar */ "./src/sidebar.ts");
 var App = /** @class */ (function () {
     function App() {
         this.obj1 = new employee_1.EmployeeDetails();
+        this.obj1.insertingempdom("employee.html", ".employee-page-section");
         this.obj2 = new role_1.RolePage();
+        this.obj2.insertroledom("role.html", ".roledetails-page-section");
+        this.obj2.insertroledetailsdom("roledetails.html", ".role-page-section");
         this.obj3 = new addemployee_1.AddEmployee();
         this.obj4 = new addrole_1.AddRole();
         this.obj5 = new sidebar_1.Sidebar();
@@ -1253,3 +1294,4 @@ app = new App();
 
 /******/ })()
 ;
+//# sourceMappingURL=main.js.map

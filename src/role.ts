@@ -94,6 +94,35 @@ export class RolePage{
         }
     ];
 
+
+    insertroledetailsdom(url:string,targetId:string){
+        fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(html => {
+            document.querySelector(targetId)!.innerHTML = html;
+        })
+        .catch(error => console.error('Error fetching content:', error));
+    }
+    
+    insertroledom(url:string,targetId:string){
+        fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(html => {
+            document.querySelector(targetId)!.innerHTML = html;
+        })
+        .catch(error => console.error('Error fetching content:', error));
+    }
+
     createRoleCard(userInformation:any){
     var infoCardContainer = document.createElement("div");
     infoCardContainer.classList.add("info-card-2");
@@ -171,8 +200,6 @@ export class RolePage{
         space.appendChild(res);
     }
     }
-
-   
 
     createCard(data:any){
     let infocard = document.createElement("div");
@@ -298,18 +325,16 @@ export class RolePage{
     }
 
     showAllEmp(){
-    var employeepage:HTMLElement = document.querySelector(".employee-page")! as HTMLElement;
-    var roledetailspage:HTMLElement = document.querySelector(".roledetails-page")! as HTMLElement;
-    var rolepage:HTMLElement = document.querySelector(".role-page")! as HTMLElement;
-    this.showRoleCard();
-    if(rolepage.style.display == "none"){
-        rolepage.style.display = "block";
-        employeepage.style.display = "none";
-        roledetailspage.style.display = "none";
-    }
-    else{
-        rolepage.style.display = "none";
-    }
+        var roledetailspage:HTMLElement=document.querySelector(".roledetails-page")! as HTMLElement;  
+        var rolepage:HTMLElement = document.querySelector(".role-page")! as HTMLElement;
+        this.showRoleCard();
+        if(!rolepage.style.display || rolepage.style.display == "none"){
+            rolepage.style.display = "block";
+            roledetailspage.style.display="none";
+        }
+        else{
+            rolepage.style.display = "none";
+        }
     }
 
     showFieldDropdown(){
@@ -363,17 +388,22 @@ export class RolePage{
     }
 
     showRole(){
-        var employeepage:HTMLElement=document.querySelector(".employee-page")! as HTMLElement;
         var roledetailspage:HTMLElement=document.querySelector(".roledetails-page")! as HTMLElement;
-        var rolepage:HTMLElement=document.querySelector(".role-page")! as HTMLElement;
         if(!roledetailspage.style.display ||roledetailspage.style.display == "none"){
             roledetailspage.style.display = "block";
-            employeepage.style.display = "none";
-            rolepage.style.display = "none";
         }
         else{
             roledetailspage.style.display = "none";
         }
         this.showCards();
+    }
+
+    goback(){
+        var rolepage:HTMLElement = document.querySelector(".role-page")! as HTMLElement;
+        var roledetailspage:HTMLElement=document.querySelector(".roledetails-page")! as HTMLElement;
+        if(!rolepage.style.display || rolepage.style.display == "block"){
+          rolepage.style.display="none";
+          roledetailspage.style.display="block"
+        }
     }
 }

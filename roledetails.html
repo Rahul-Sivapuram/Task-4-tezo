@@ -1,0 +1,143 @@
+<section class="roledetails-page">
+    <!-- Roles/Employees section -->
+    <section class="add-roledetails">
+        <div class="add-employee-conetentpart">
+            <div class="add-role-heading">
+                Roles
+            </div>
+            <span>All the roles are configured here</span>
+        </div>
+        
+        <button class="add-role-button" onclick=app.obj2.showAddRolePage()>
+            <img src="assets/svg/pluswhite.svg" alt="Plus symbol">
+            ADD ROLE
+        </button>    
+    </section>
+    
+    <!-- Filter section -->
+    <section class="filterrole">
+        <div class="filterrole-left">
+            <div class="filterrole-icon">
+                <span>Filter</span>
+                <img src="assets/images/s3filter.png" width="15px" height="15px" alt="Filter icon">
+            </div>
+            <div class="department-selection">
+                <select name="departments" id="role-departments">
+                    <option value="Department" selected>Department</option>
+                    <option value="IT">IT</option>
+                    <option value="Product Engg.">Product Engg.</option>
+                    <option value="UIUX">UIUX</option>
+                </select>
+            </div>
+            <div class="location-selection">
+                <select name="location" id="role-location">
+                    <option value="location">Location</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Delhi">Delhi</option>
+                </select>
+            </div>
+        </div>
+        <div class="filterrole-right">
+            <button class="role-reset-button" onclick=app.obj2.showCards()>
+                Reset
+            </button>
+            <button class="role-apply-button" onclick=app.obj2.filter()>
+                Apply
+            </button>
+        </div>
+    </section>
+
+    <section class="addnewrole-page">
+        <form>    
+            <h4>Create New Role</h4>
+            <div class="row-one">
+                <div class="text-field">
+                    <label for="role-name">Role Name</label>
+                    <input type="text" name="role-name" id="role-rolename" placeholder="Enter RoleName" required>
+                </div>
+                <div class="text-field">
+                    <label for="role-selectdepartment">Department</label>
+                    <select name="department" class="seperate-select" id="role-selectdepartment">
+                        <option value="" disabled selected>Select Department</option>
+                        <option value="UIUX">UIUX Designer</option>
+                        <option value="IT">IT</option>
+                        <option value="ProductEngg">Product Engg</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="textarea-section">
+                <div class="text-field-seperate">
+                    <label for="role-description">Description</label>
+                    <textarea name="description" placeholder="Text" id="role-description" rows="10" cols="67"></textarea>
+                </div>
+            </div>
+
+            <div class="text-field">
+                <label for="role-selectlocation">Location</label>
+                <select name="location" id="role-selectlocation" required>
+                    <option value="" disabled selected>Select Your Location</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Delhi">Delhi</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="">Assign employees</label>
+                <div class="search-dropdown">
+                    <input type="text" name="searchemp" id="searchemp" placeholder="Search for an employee">
+                    <span id="searchPlaceholder"></span>
+                    <img src="assets/images/arrowdown.png" alt="Arrowdown symbol" width="10px" height="10px" onclick=app.showFieldDropdown()>
+                </div>
+
+                <div class="checkbox-dropdownlist">
+                    <div class="checkbox-items">
+                        <div class="checkbox-items-left">
+                            <img src="assets/images/man.jpg" alt="Human image" class="dropdown-profile">
+                            <span>app Sivapuram</span>
+                        </div>
+                        <input type="checkbox" value="app Sivapuram" name="dp-empdetails"  id="dp-empdetails">
+                    </div>
+                    <div class="checkbox-items">
+                        <div class="checkbox-items-left">
+                            <img src="assets/images/man.jpg" alt="Human image" class="dropdown-profile">
+                            <span>John Doe</span>
+                        </div>
+                        <input type="checkbox" value="John Doe" name="dp-empdetails"  id="dp-empdetails">
+                    </div>
+                    <div class="checkbox-items">
+                        <div class="checkbox-items-left">
+                            <img src="assets/images/man.jpg" alt="Human image" class="dropdown-profile">
+                            <span>Eric</span>
+                        </div>
+                        <input type="checkbox" value="Eric" name="dp-empdetails"  id="dp-empdetails">
+                    </div>
+                    <div class="checkbox-items">
+                        <div class="checkbox-items-left">
+                            <img src="assets/images/man.jpg" alt="Human image" class="dropdown-profile">
+                            <span>Alex Pearson</span>
+                        </div>
+                        <input type="checkbox" value="Alex Pearson" name="dp-empdetails"  id="dp-empdetails">
+                    </div>
+                </div>
+            </div>
+            <div class="role-buttons">
+                <button class="role-dismiss-button" onclick=app.obj2.showAddRolePage()>
+                    <span>Dismiss</span>
+                </button>
+                <button class="role-accept-button" onclick=app.obj4.addRoleData(event)>
+                    <span>Accept</span>
+                </button>
+            </div>
+        </form>
+        <div class="toast-role">
+            Added Successfully
+        </div>
+    </section>
+
+    <!-- Info card list section -->
+    <section class="info-cards-list">
+    </section>
+</section>

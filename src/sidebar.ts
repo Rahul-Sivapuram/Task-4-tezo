@@ -38,14 +38,10 @@ export class Sidebar extends EmployeeDetails{
     }
         
     showEmp(){
-        this.showTableRows();
+        this.showTableRows()
         var employeepage:HTMLElement = document.querySelector(".employee-page")! as HTMLElement;
-        var roledetailspage:HTMLElement = document.querySelector(".roledetails-page")! as HTMLElement;
-        var rolepage:HTMLElement = document.querySelector(".role-page")! as HTMLElement;
         if(!employeepage.style.display || employeepage.style.display == "none"){
             employeepage.style.display = "block";
-            roledetailspage.style.display = "none";
-            rolepage.style.display = "none";  
         }
         else{
             employeepage.style.display = "none";

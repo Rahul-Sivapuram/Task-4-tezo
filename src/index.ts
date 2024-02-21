@@ -13,7 +13,10 @@ class App{
   obj5;
   constructor(){
     this.obj1=new EmployeeDetails();
+    this.obj1.insertingempdom("employee.html",".employee-page-section");
     this.obj2=new RolePage();
+    this.obj2.insertroledom("role.html",".roledetails-page-section");
+    this.obj2.insertroledetailsdom("roledetails.html",".role-page-section");
     this.obj3=new AddEmployee();
     this.obj4=new AddRole();
     this.obj5=new Sidebar();
