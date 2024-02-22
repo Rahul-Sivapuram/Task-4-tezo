@@ -52,136 +52,164 @@ export class EmployeeDetails{
             { label: "Delhi", value: "Delhi", id: "location", name: "filter-location" }
         ]
     };
-    insertingempdom(url:string,targetId:string){
-        fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-        .then(html => {
-            document.querySelector(targetId)!.innerHTML = html;
-                this.handleFileInputChange(),
-                this.alphabetStateChange(),
-                this.createMultiSelectDropDown(),
-                this.getDepartmentCount("UIUX","IT","ProductEngg")
-        })
-        .catch(error => console.error('Error fetching content:', error));
-      }
+
+    insertPagesIntoContainer():void {
+      let pageContainer:HTMLDivElement = document.querySelector('.employee-page-section')! as HTMLDivElement;
+      fetch('../employee.html')
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.text();
+          })
+          .then(html => {
+              pageContainer.innerHTML += html;
+          })
+          .catch(error => console.error('Error fetching content:', error));
+  
+      fetch('../role.html')
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.text();
+          })
+          .then(html => {
+              pageContainer.innerHTML += html;
+          })
+          .catch(error => console.error('Error fetching content:', error));
+  
+      fetch('../roledetails.html')
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.text();
+          })
+          .then(html => {
+              pageContainer.innerHTML += html;
+          })
+          .catch(error => console.error('Error fetching content:', error));
+    }
+
+    addDOMContentLoadedListener():void{
+      document.addEventListener("DOMContentLoaded", () => {
+          this.insertPagesIntoContainer();
+      });
+    }
     
-    handleFileInputChange(){
-    let fileInput:HTMLInputElement=document.getElementById("addFilePicker")! as HTMLInputElement;
-    var profilepic:HTMLImageElement=document.querySelector(".profilepic")!;
-    fileInput.addEventListener('change',()=>{
-        const fr=new FileReader();
-        fr.readAsDataURL(fileInput.files![0]);
-        fr.addEventListener('load',()=>{
-        this.fileUrl!=fr.result;
-        profilepic.src=this.fileUrl;
-        console.log(this.fileUrl);
-        });
-    });
-    profilepic.src="assets/images/profile-user.png";
-    this.fileUrl="";
+    handleFileInputChange():void{
+      let fileInput:HTMLInputElement=document.getElementById("addFilePicker")! as HTMLInputElement;
+      var profilepic:HTMLImageElement=document.querySelector(".profilepic")!;
+      fileInput.addEventListener('change',()=>{
+          const fr=new FileReader();
+          fr.readAsDataURL(fileInput.files![0]);
+          fr.addEventListener('load',()=>{
+          this.fileUrl!=fr.result;
+          profilepic.src=this.fileUrl;
+          console.log(this.fileUrl);
+          });
+      });
+      profilepic.src="assets/images/profile-user.png";
+      this.fileUrl="";
     }
     
     alphabetStateChange(){
-    var containers = document.querySelectorAll(".alphabet");
-    var previousContainer:any = null;
-    var clickTimer:any;
-    containers.forEach((container) =>{
-        container.addEventListener("click", (event) => {
-            var spanValue = container.querySelector("span");
-            if (clickTimer) {
-                clearTimeout(clickTimer);
-                clickTimer = null;
-                container.classList.remove("change-alphabet");
-                this.filterAlphabet="";
-                this.showTableRows();
-            } else {
-                clickTimer = setTimeout(()=> {
-                    clickTimer = null;
-                    if (previousContainer !== null) {
-                        previousContainer.classList.remove("change-alphabet");
-                    }
-                    container.classList.add("change-alphabet");
-                    this.filterAlphabet=spanValue?.textContent || "";
-                    previousContainer = container;
-                }, 300); 
-            }
-        });
-    });
+      var containers = document.querySelectorAll(".alphabet");
+      var previousContainer:any = null;
+      var clickTimer:any;
+      containers.forEach((container) =>{
+          container.addEventListener("click", (event) => {
+              var spanValue = container.querySelector("span");
+              if (clickTimer) {
+                  clearTimeout(clickTimer);
+                  clickTimer = null;
+                  container.classList.remove("change-alphabet");
+                  this.filterAlphabet="";
+                  this.showTableRows();
+              } else {
+                  clickTimer = setTimeout(()=> {
+                      clickTimer = null;
+                      if (previousContainer !== null) {
+                          previousContainer.classList.remove("change-alphabet");
+                      }
+                      container.classList.add("change-alphabet");
+                      this.filterAlphabet=spanValue?.textContent || "";
+                      previousContainer = container;
+                  }, 300); 
+              }
+          });
+      });
     }
 
     createMultiSelectDropDown():void{
-    let filterleft: HTMLDivElement = document.querySelector(".filter-left")! as HTMLDivElement;
-    let dropone: HTMLElement = this.createFilterDropdown(this.filterDropdownModel, "filter-dropdown-1", "filter-display1", "filtercheckbox-dropdownlist", this.showFilterStatusDropdown);
-    filterleft.appendChild(dropone);
-    let droptwo: HTMLElement = this.createFilterDropdown(this.filterDropdownModel2, "filter-dropdown-2", "filter-display2", "filtercheckbox-dropdownlist2", this.showFilterDepartmentDropdown);
-    filterleft.appendChild(droptwo);
-    let dropthree: HTMLElement = this.createFilterDropdown(this.filterDropdownModel3, "filter-dropdown-3", "filter-display3", "filtercheckbox-dropdownlist3", this.showFilterLocationDropdown);
-    filterleft.appendChild(dropthree);
+      let filterleft: HTMLDivElement = document.querySelector(".filter-left")! as HTMLDivElement;
+      let dropone: HTMLElement = this.createFilterDropdown(this.filterDropdownModel, "filter-dropdown-1", "filter-display1", "filtercheckbox-dropdownlist", this.showFilterStatusDropdown);
+      filterleft.appendChild(dropone);
+      let droptwo: HTMLElement = this.createFilterDropdown(this.filterDropdownModel2, "filter-dropdown-2", "filter-display2", "filtercheckbox-dropdownlist2", this.showFilterDepartmentDropdown);
+      filterleft.appendChild(droptwo);
+      let dropthree: HTMLElement = this.createFilterDropdown(this.filterDropdownModel3, "filter-dropdown-3", "filter-display3", "filtercheckbox-dropdownlist3", this.showFilterLocationDropdown);
+      filterleft.appendChild(dropthree);
     }
 
-    createFilterDropdown(model:FilterMultiSelectDropDownModel, divId:string,spanId:string,dropDownId:string,callback:Function) {
-    var filterDropdownContainer = document.createElement("div");
-    filterDropdownContainer.classList.add(divId);
-    filterDropdownContainer.onclick=function(){
-        callback();
-    };
-    var filterDisplaySpan = document.createElement("span");
-    filterDisplaySpan.id = spanId;
-    filterDisplaySpan.textContent = model.filterDisplayName;
-    filterDropdownContainer.appendChild(filterDisplaySpan);
-    var arrowImg = document.createElement("img");
-    arrowImg.src = "assets/images/arrowdown.png";
-    arrowImg.alt = "Arrowdown symbol";
-    arrowImg.width = 10;
-    arrowImg.height = 10;
-    filterDropdownContainer.appendChild(arrowImg);
-    var dropdownListContainer = document.createElement("div");
-    dropdownListContainer.classList.add(dropDownId);
-    model.checkboxItems.forEach(function(item) {
-        var checkboxItem = document.createElement("div");
-        checkboxItem.classList.add("checkbox-items");
-    
-        var span = document.createElement("span");
-        span.textContent = item.label;
-        checkboxItem.appendChild(span);
-    
-        var input = document.createElement("input");
-        input.type = "checkbox";
-        input.value = item.value;
-        input.name = item.name;
-        input.id = item.id;
-        checkboxItem.appendChild(input);
-        dropdownListContainer.appendChild(checkboxItem);
+    createFilterDropdown(model:FilterMultiSelectDropDownModel, divId:string,spanId:string,dropDownId:string,callback:Function):HTMLDivElement {
+      var filterDropdownContainer = document.createElement("div");
+      filterDropdownContainer.classList.add(divId);
+      filterDropdownContainer.onclick=function(){
+          callback();
+      };
+      var filterDisplaySpan = document.createElement("span");
+      filterDisplaySpan.id = spanId;
+      filterDisplaySpan.textContent = model.filterDisplayName;
+      filterDropdownContainer.appendChild(filterDisplaySpan);
+      var arrowImg = document.createElement("img");
+      arrowImg.src = "assets/images/arrowdown.png";
+      arrowImg.alt = "Arrowdown symbol";
+      arrowImg.width = 10;
+      arrowImg.height = 10;
+      filterDropdownContainer.appendChild(arrowImg);
+      var dropdownListContainer = document.createElement("div");
+      dropdownListContainer.classList.add(dropDownId);
+      model.checkboxItems.forEach(function(item) {
+          var checkboxItem = document.createElement("div");
+          checkboxItem.classList.add("checkbox-items");
+      
+          var span = document.createElement("span");
+          span.textContent = item.label;
+          checkboxItem.appendChild(span);
+      
+          var input = document.createElement("input");
+          input.type = "checkbox";
+          input.value = item.value;
+          input.name = item.name;
+          input.id = item.id;
+          checkboxItem.appendChild(input);
+          dropdownListContainer.appendChild(checkboxItem);
     });
     filterDropdownContainer.appendChild(dropdownListContainer);
     return filterDropdownContainer;
     }
 
-    getDepartmentCount(cat1:string,cat2:string,cat3:string){
-    let existingdata:string=localStorage.getItem("EmployeeData")!;
-    let array:EmployeeModelDataTypes[]=JSON.parse(existingdata);
-    array.filter((val:EmployeeModelDataTypes)=>{
-        if(val.DEPARTMENT == cat1){
-        this.uiuxCount += 1;
-        }
-        else if(val.DEPARTMENT == cat2){
-        this.itCount += 1;
-        }
-        else if(val.DEPARTMENT == cat3 || val.DEPARTMENT == "Product Engg"){
-        this.peCount += 1;
-        }
-        let itBox:HTMLDivElement=document.querySelector(".department-button-square-one")!;
-        let uiuxBox:HTMLDivElement=document.querySelector(".department-button-square-two")!;
-        let peBox:HTMLDivElement=document.querySelector(".department-button-square-three")!;
-        itBox!.textContent=this.itCount.toString();
-        uiuxBox!.textContent=this.uiuxCount.toString();
-        peBox!.textContent=this.peCount.toString();
-    })
+    getDepartmentCount(cat1:string,cat2:string,cat3:string):void{
+      let existingdata:string=localStorage.getItem("EmployeeData")!;
+      let array:EmployeeModelDataTypes[]=JSON.parse(existingdata);
+      array.filter((val:EmployeeModelDataTypes)=>{
+          if(val.DEPARTMENT == cat1){
+          this.uiuxCount += 1;
+          }
+          else if(val.DEPARTMENT == cat2){
+          this.itCount += 1;
+          }
+          else if(val.DEPARTMENT == cat3 || val.DEPARTMENT == "Product Engg"){
+          this.peCount += 1;
+          }
+          let itBox:HTMLDivElement=document.querySelector(".department-button-square-one")!;
+          let uiuxBox:HTMLDivElement=document.querySelector(".department-button-square-two")!;
+          let peBox:HTMLDivElement=document.querySelector(".department-button-square-three")!;
+          itBox!.textContent=this.itCount.toString();
+          uiuxBox!.textContent=this.uiuxCount.toString();
+          peBox!.textContent=this.peCount.toString();
+      })
     }
 
     createUserRow(data:EmployeeModelDataTypes):HTMLTableRowElement{
@@ -201,7 +229,6 @@ export class EmployeeDetails{
         deletebutton.classList.remove("checked-delete-button");
         }
     }
-    
     var labelForRadio = document.createElement('label');
     labelForRadio.setAttribute('for', 'sample');
     radioCell.appendChild(radioInput);
@@ -284,7 +311,7 @@ export class EmployeeDetails{
     return tableRow;
     }
 
-    showFilterStatusDropdown(){
+    showFilterStatusDropdown():void{
     var list:HTMLDivElement = document.querySelector(".filtercheckbox-dropdownlist")! as HTMLDivElement;
     var placeholder:HTMLDivElement = document.getElementById("filter-display1")! as HTMLDivElement;
     var chk:NodeListOf<HTMLInputElement>=document.querySelectorAll('input[type="checkbox"][name="filter-status"]');
@@ -312,7 +339,7 @@ export class EmployeeDetails{
     });
     }
 
-    showFilterDepartmentDropdown(){
+    showFilterDepartmentDropdown():void{
     var list:HTMLDivElement = document.querySelector(".filtercheckbox-dropdownlist2")! as HTMLDivElement;
     var placeholder:HTMLDivElement = document.getElementById("filter-display2")! as HTMLDivElement;
     var chk:NodeListOf<HTMLInputElement>=document.querySelectorAll('input[type="checkbox"][name="filter-department"]');
@@ -341,46 +368,46 @@ export class EmployeeDetails{
     });
     }
 
-    showFilterLocationDropdown(){
-    var list:HTMLDivElement = document.querySelector(".filtercheckbox-dropdownlist3")! as HTMLDivElement;
-    var placeholder:HTMLDivElement = document.getElementById("filter-display3") as HTMLDivElement;
-    var chk:NodeListOf<HTMLInputElement>=document.querySelectorAll('input[type="checkbox"][name="filter-location"]');
-    if (!list.style.display || list.style.display === "none") {
-        list.style.display = "flex";
-    } else {
-        list.style.display = "none";
-    }
-    let arr:string[]=[];
-    chk.forEach((event)=>{
-        event.addEventListener("click",()=>{
-            let v=event.value;
-            if(event.checked){
-            arr.push(v);
-            }
-            else{
-            const index = arr.indexOf(v);
-            if (index !== -1) {
-                arr.splice(index, 1);
-            }
-            }
-            this.locationArray=arr;
-            console.log(this.locationArray);
-            placeholder.innerText=arr.length +" "+ "Selected";
-        });
-    });
+    showFilterLocationDropdown():void{
+      var list:HTMLDivElement = document.querySelector(".filtercheckbox-dropdownlist3")! as HTMLDivElement;
+      var placeholder:HTMLDivElement = document.getElementById("filter-display3") as HTMLDivElement;
+      var chk:NodeListOf<HTMLInputElement>=document.querySelectorAll('input[type="checkbox"][name="filter-location"]');
+      if (!list.style.display || list.style.display === "none") {
+          list.style.display = "flex";
+      } else {
+          list.style.display = "none";
+      }
+      let arr:string[]=[];
+      chk.forEach((event)=>{
+          event.addEventListener("click",()=>{
+              let v=event.value;
+              if(event.checked){
+              arr.push(v);
+              }
+              else{
+              const index = arr.indexOf(v);
+              if (index !== -1) {
+                  arr.splice(index, 1);
+              }
+              }
+              this.locationArray=arr;
+              console.log(this.locationArray);
+              placeholder.innerText=arr.length +" "+ "Selected";
+          });
+      });
     }
    
-    filterSection(){
-    const filteroption:HTMLElement = document.querySelector(".filter-option")! as HTMLElement;
-    if(filteroption.style.display == "none"){
-        filteroption.style.display = "flex";
-    }
-    else{
-        filteroption.style.display = "none";
-    }
+    filterSection():void{
+      const filteroption:HTMLElement = document.querySelector(".filter-option")! as HTMLElement;
+      if(filteroption.style.display == "none"){
+          filteroption.style.display = "flex";
+      }
+      else{
+          filteroption.style.display = "none";
+      }
     }
     
-    showAddEmployeePage(){
+    showAddEmployeePage():void{
         var mainpage:HTMLElement=document.querySelector(".table-part")! as HTMLElement;
         var emppage:HTMLElement=document.querySelector(".addemployee-page")! as HTMLElement;
         var addemp:HTMLElement=document.querySelector(".add-employee")! as HTMLElement;
@@ -402,7 +429,7 @@ export class EmployeeDetails{
         }
     }
     
-    deleteRow(){
+    deleteRow():void{
       const employeeDataString:string = localStorage.getItem('EmployeeData')!;
       let employeeData = JSON.parse(employeeDataString);
       const indextodelete = [15,16,17,18,19]; 
@@ -419,7 +446,7 @@ export class EmployeeDetails{
       console.log('Objects deleted successfully.');
     }
   
-    addToCsv(){
+    addToCsv():void{
       const table: HTMLTableElement | null = document.getElementById('UserTable') as HTMLTableElement;
       if (!table) return; 
   
@@ -441,7 +468,7 @@ export class EmployeeDetails{
       link.click();
     }
   
-    filterByAlphabet(inp:string){
+    filterByAlphabet(inp:string):void{
       var table:HTMLTableElement = document.getElementById('UserTable')! as HTMLTableElement;
       var existingdata:string=localStorage.getItem("EmployeeData")!;
       var array=JSON.parse(existingdata);
@@ -474,7 +501,7 @@ export class EmployeeDetails{
       }
     }
   
-    sortAccordToCol(inp:string){
+    sortAccordToCol(inp:string):void{
       var existingdata:string=localStorage.getItem("EmployeeData")!;
       var array=JSON.parse(existingdata);
     
@@ -494,7 +521,7 @@ export class EmployeeDetails{
       }
     }
   
-    sortDecToCol(inp:string){
+    sortDecToCol(inp:string):void{
       var existingdata:string=localStorage.getItem("EmployeeData")!;
       var array=JSON.parse(existingdata);
       array.sort((a:any, b:any) => {
@@ -512,7 +539,7 @@ export class EmployeeDetails{
       }
     }
   
-    showTableRows(){
+    showTableRows():void{
       var table:HTMLDivElement = document.getElementById('UserTable')! as HTMLDivElement;
       var data:string = localStorage.getItem("EmployeeData")!;
       var dataarray:EmployeeModelDataTypes[] = JSON.parse(data);
@@ -535,7 +562,7 @@ export class EmployeeDetails{
       });
     }
   
-    filterTableRows(){
+    filterTableRows():void{
       var table:HTMLDivElement = document.getElementById('UserTable')! as HTMLDivElement;
       var data:string = localStorage.getItem("EmployeeData")!;
       var dataarray = JSON.parse(data);
@@ -551,7 +578,7 @@ export class EmployeeDetails{
       }, 10);
     }
   
-    showSpecific(inp:string,cat:string){
+    showSpecific(inp:string,cat:string):void{
       var table:HTMLDivElement = document.getElementById('UserTable')! as HTMLDivElement;
       table.querySelector('tbody')!.innerHTML="";
       var data:string=localStorage.getItem("EmployeeData")!;

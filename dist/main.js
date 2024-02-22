@@ -240,9 +240,9 @@ var EmployeeDetails = /** @class */ (function () {
             ]
         };
     }
-    EmployeeDetails.prototype.insertingempdom = function (url, targetId) {
-        var _this = this;
-        fetch(url)
+    EmployeeDetails.prototype.insertPagesIntoContainer = function () {
+        var pageContainer = document.querySelector('.employee-page-section');
+        fetch('../employee.html')
             .then(function (response) {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -250,13 +250,37 @@ var EmployeeDetails = /** @class */ (function () {
             return response.text();
         })
             .then(function (html) {
-            document.querySelector(targetId).innerHTML = html;
-            _this.handleFileInputChange(),
-                _this.alphabetStateChange(),
-                _this.createMultiSelectDropDown(),
-                _this.getDepartmentCount("UIUX", "IT", "ProductEngg");
+            pageContainer.innerHTML += html;
         })
             .catch(function (error) { return console.error('Error fetching content:', error); });
+        fetch('../role.html')
+            .then(function (response) {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+            .then(function (html) {
+            pageContainer.innerHTML += html;
+        })
+            .catch(function (error) { return console.error('Error fetching content:', error); });
+        fetch('../roledetails.html')
+            .then(function (response) {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+            .then(function (html) {
+            pageContainer.innerHTML += html;
+        })
+            .catch(function (error) { return console.error('Error fetching content:', error); });
+    };
+    EmployeeDetails.prototype.addDOMContentLoadedListener = function () {
+        var _this = this;
+        document.addEventListener("DOMContentLoaded", function () {
+            _this.insertPagesIntoContainer();
+        });
     };
     EmployeeDetails.prototype.handleFileInputChange = function () {
         var _this = this;
@@ -836,32 +860,6 @@ var RolePage = /** @class */ (function () {
             }
         ];
     }
-    RolePage.prototype.insertroledetailsdom = function (url, targetId) {
-        fetch(url)
-            .then(function (response) {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-            .then(function (html) {
-            document.querySelector(targetId).innerHTML = html;
-        })
-            .catch(function (error) { return console.error('Error fetching content:', error); });
-    };
-    RolePage.prototype.insertroledom = function (url, targetId) {
-        fetch(url)
-            .then(function (response) {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-            .then(function (html) {
-            document.querySelector(targetId).innerHTML = html;
-        })
-            .catch(function (error) { return console.error('Error fetching content:', error); });
-    };
     RolePage.prototype.createRoleCard = function (userInformation) {
         var infoCardContainer = document.createElement("div");
         infoCardContainer.classList.add("info-card-2");
@@ -1121,8 +1119,10 @@ var RolePage = /** @class */ (function () {
     };
     RolePage.prototype.showRole = function () {
         var roledetailspage = document.querySelector(".roledetails-page");
+        var employeepage = document.querySelector(".employee-page");
         if (!roledetailspage.style.display || roledetailspage.style.display == "none") {
             roledetailspage.style.display = "block";
+            employeepage.style.display = "none";
         }
         else {
             roledetailspage.style.display = "none";
@@ -1210,8 +1210,10 @@ var Sidebar = /** @class */ (function (_super) {
     Sidebar.prototype.showEmp = function () {
         this.showTableRows();
         var employeepage = document.querySelector(".employee-page");
+        var roledetailspage = document.querySelector(".roledetails-page");
         if (!employeepage.style.display || employeepage.style.display == "none") {
             employeepage.style.display = "block";
+            roledetailspage.style.display = "none";
         }
         else {
             employeepage.style.display = "none";
@@ -1277,14 +1279,12 @@ var addrole_1 = __webpack_require__(/*! ./addrole */ "./src/addrole.ts");
 var sidebar_1 = __webpack_require__(/*! ./sidebar */ "./src/sidebar.ts");
 var App = /** @class */ (function () {
     function App() {
-        this.obj1 = new employee_1.EmployeeDetails();
-        this.obj1.insertingempdom("employee.html", ".employee-page-section");
-        this.obj2 = new role_1.RolePage();
-        this.obj2.insertroledom("role.html", ".roledetails-page-section");
-        this.obj2.insertroledetailsdom("roledetails.html", ".role-page-section");
-        this.obj3 = new addemployee_1.AddEmployee();
-        this.obj4 = new addrole_1.AddRole();
-        this.obj5 = new sidebar_1.Sidebar();
+        this.employeeobject = new employee_1.EmployeeDetails();
+        this.employeeobject.addDOMContentLoadedListener();
+        this.rolepageobject = new role_1.RolePage();
+        this.addemployeeobject = new addemployee_1.AddEmployee();
+        this.addroleobject = new addrole_1.AddRole();
+        this.sidebar = new sidebar_1.Sidebar();
     }
     return App;
 }());
@@ -1294,4 +1294,3 @@ app = new App();
 
 /******/ })()
 ;
-//# sourceMappingURL=main.js.map

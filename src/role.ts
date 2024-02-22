@@ -6,12 +6,14 @@ type RolePageModel={
     userdepartment:string,
     location:string,
 }
+
 type RoleDetailsModel={
     Role:string,
     Department:string,
     Location:string,
     TotalEmployees:string,
 }
+
 export class RolePage{
     readonly users:RolePageModel[] = [
         {
@@ -93,35 +95,6 @@ export class RolePage{
         "TotalEmployees": "+41"
         }
     ];
-
-
-    insertroledetailsdom(url:string,targetId:string){
-        fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-        .then(html => {
-            document.querySelector(targetId)!.innerHTML = html;
-        })
-        .catch(error => console.error('Error fetching content:', error));
-    }
-    
-    insertroledom(url:string,targetId:string){
-        fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-        .then(html => {
-            document.querySelector(targetId)!.innerHTML = html;
-        })
-        .catch(error => console.error('Error fetching content:', error));
-    }
 
     createRoleCard(userInformation:any){
     var infoCardContainer = document.createElement("div");
@@ -389,8 +362,10 @@ export class RolePage{
 
     showRole(){
         var roledetailspage:HTMLElement=document.querySelector(".roledetails-page")! as HTMLElement;
+        var employeepage:HTMLElement=document.querySelector(".employee-page")! as HTMLElement;
         if(!roledetailspage.style.display ||roledetailspage.style.display == "none"){
             roledetailspage.style.display = "block";
+            employeepage.style.display="none";
         }
         else{
             roledetailspage.style.display = "none";

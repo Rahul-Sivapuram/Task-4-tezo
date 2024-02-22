@@ -18,11 +18,11 @@
             <div class="sidebar-toppart">
                 <div class="logo-arrow">
                     <img src="assets/images/tezo.png" alt="Tezo logo" class="logo">  
-                    <img src="assets/images/handle.png" alt="Back button" class="backbutton" onclick=app.obj5.hideSidebar()>     
+                    <img src="assets/images/handle.png" alt="Back button" class="backbutton" onclick=app.sidebar.hideSidebar()>     
                 </div>     
                 <div class="sidebar-buttons">
                     <h3 class="heading">ALL</h3>
-                    <div class="special-button" onclick="app.obj5.showEmptyDisplay()">
+                    <div class="special-button" onclick="app.sidebar.showEmptyDisplay()">
                         <div class="dashboard-seperate">
                             <div class="dash-left">
                                 <img src="assets/svg/dashboard.svg" alt="Dashboard symbol" srcset="">
@@ -34,7 +34,7 @@
                         </div>
                         <div class="corner-line"></div>
                     </div>
-                    <div class="special-button" onclick="app.obj5.showDropDown();app.obj5.showEmp();">
+                    <div class="special-button" onclick="app.sidebar.showDropDown();app.sidebar.showEmp();">
                         <div class="dashboard-seperate">
                             <div class="dash-left">
                                 <img src="assets/svg/employees.svg" alt="Employees symbol" srcset="">
@@ -49,26 +49,26 @@
                 
                     <ul class="userstatus-menu">
                         <li>
-                            <div class="department-button-left" onclick=app.showTableRows()>
+                            <div class="department-button-left" onclick=app.employeeobject.showTableRows()>
                                 <div class="grey-dot"></div>
                                 <span>All</span>
                             </div>
                         </li>
                         <li>
-                            <div class="department-button-left" onclick="app.showSpecific('Active','STATUS')">
+                            <div class="department-button-left" onclick="app.employeeobject.showSpecific('Active','STATUS')">
                                 <div class="grey-dot"></div>
                                 <span>Active</span>
                             </div>
                         </li>
                         <li>
-                            <div class="department-button-left" onclick="app.showSpecific('Inactive','STATUS')">
+                            <div class="department-button-left" onclick="app.employeeobject.showSpecific('Inactive','STATUS')">
                                 <div class="grey-dot"></div>
                                 <span>InActive</span>
                             </div>
                         </li>
                         <br>
                         <h3 class="sep-heading" style="margin-left: .5rem;">DEPARTMENTS</h3>
-                        <div class="department-button" onclick="app.showSpecific('IT','DEPARTMENT')">
+                        <div class="department-button" onclick="app.employeeobject.showSpecific('IT','DEPARTMENT')">
                             <div class="department-button-left">
                                 <div class="grey-dot"></div>
                                 IT
@@ -77,7 +77,7 @@
                                 
                             </div>
                         </div>
-                        <div class="department-button" onclick="app.showSpecific('UIUX','DEPARTMENT')">
+                        <div class="department-button" onclick="app.employeeobject.showSpecific('UIUX','DEPARTMENT')">
                             <div class="department-button-left">
                                 <div class="grey-dot"></div>
                                 UIUX
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                         <div class="department-button">
-                            <div class="department-button-left" onclick="app.showSpecific('ProductEngg','DEPARTMENT')">
+                            <div class="department-button-left" onclick="app.employeeobject.showSpecific('ProductEngg','DEPARTMENT')">
                                 <div class="grey-dot"></div>
                                 Product Engg
                             </div>
@@ -101,7 +101,7 @@
                     <!-- ROLE/USER MANAGEMENT -->
                     <h3 class="heading">ROLE / USER MANAGEMENT</h3>
                     <div class="special-button">
-                        <div class="dashboard-seperate" onclick=app.obj2.showRole()>
+                        <div class="dashboard-seperate" onclick=app.rolepageobject.showRole()>
                             <div class="dash-left">
                                 <img src="assets/svg/settingsblack.svg" alt="Setting symbol" srcset="">
                                 <span>Roles</span>
@@ -143,12 +143,12 @@
         </div>
 
         <div class="small-sidebar">
-            <div onclick=app.obj5.showSidebar() class="menu">
+            <div onclick=app.sidebar.showSidebar() class="menu">
                 <img src="assets/images/handle.png" alt="Arrow menu" srcset="" class="hamburger">
             </div>
             <img src="assets/svg/dashboard.svg" alt="Arrow icon" height="15px" width="15px">
-            <img src="assets/svg/employees.svg" alt="GroupOfEmployees icon" height="15px" width="15px" onclick=app.obj5.showEmp()>
-            <img src="assets/svg/settingsgrey.svg" alt="Settings icon" height="15px" width="15px" onclick=app.showRole()>
+            <img src="assets/svg/employees.svg" alt="GroupOfEmployees icon" height="15px" width="15px" onclick=app.sidebar.showEmp()>
+            <img src="assets/svg/settingsgrey.svg" alt="Settings icon" height="15px" width="15px" onclick=app.rolepageobject.showRole()>
             <img src="assets/svg/account.svg" alt="Account icon" height="15px" width="15px">
         </div>
     </div>
@@ -176,14 +176,8 @@
             </div>   
         </div>
         
-        <!--Employee Page-->
+        <!--pages-->
         <div class="employee-page-section"></div>
-
-        <!--Role Page-->
-        <div class="role-page-section"></div>
-
-        <!--Role Details Page-->
-        <div class="roledetails-page-section"></div>
     </div>
     
 </body>

@@ -8,7 +8,7 @@
             <span>All the roles are configured here</span>
         </div>
         
-        <button class="add-role-button" onclick=app.obj2.showAddRolePage()>
+        <button class="add-role-button" onclick=app.rolepageobject.showAddRolePage()>
             <img src="assets/svg/pluswhite.svg" alt="Plus symbol">
             ADD ROLE
         </button>    
@@ -39,10 +39,10 @@
             </div>
         </div>
         <div class="filterrole-right">
-            <button class="role-reset-button" onclick=app.obj2.showCards()>
+            <button class="role-reset-button" onclick=app.rolepageobject.showCards()>
                 Reset
             </button>
-            <button class="role-apply-button" onclick=app.obj2.filter()>
+            <button class="role-apply-button" onclick=app.rolepageobject.filter()>
                 Apply
             </button>
         </div>
@@ -124,10 +124,10 @@
                 </div>
             </div>
             <div class="role-buttons">
-                <button class="role-dismiss-button" onclick=app.obj2.showAddRolePage()>
+                <button class="role-dismiss-button" onclick=app.rolepageobject.showAddRolePage()>
                     <span>Dismiss</span>
                 </button>
-                <button class="role-accept-button" onclick=app.obj4.addRoleData(event)>
+                <button class="role-accept-button" onclick=app.addroleobject.addRoleData(event)>
                     <span>Accept</span>
                 </button>
             </div>
