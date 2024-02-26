@@ -15,6 +15,7 @@ type RoleDetailsModel={
 }
 
 export class RolePage{
+
     readonly users:RolePageModel[] = [
         {
             "username": "Robert Fox",
@@ -96,73 +97,73 @@ export class RolePage{
         }
     ];
 
-    createRoleCard(userInformation:any){
-    var infoCardContainer = document.createElement("div");
-    infoCardContainer.classList.add("info-card-2");
-    var userProfileBox = document.createElement("div");
-    userProfileBox.classList.add("user-profile-box-2");
-    var userProfileImage = document.createElement("img");
-    userProfileImage.src = "assets/images/man.jpg";
-    userProfileImage.alt = "Human Avatar";
-    var userProfileText = document.createElement("span");
-    userProfileText.classList.add("span-outside");
-    userProfileText.innerHTML = userInformation.username + "<br><span class='span-inside'>" + userInformation.userrole + "</span>";
-    userProfileBox.appendChild(userProfileImage);
-    userProfileBox.appendChild(userProfileText);
-    infoCardContainer.appendChild(userProfileBox);
-    infoCardContainer.appendChild(document.createElement("br"));
-    // Create infocard items
-    var infoCardItems = document.createElement("div");
-    infoCardItems.classList.add("infocard-items");
-    var stampIcon = document.createElement("img");
-    stampIcon.src = "assets/svg/stamp.svg";
-    stampIcon.alt = "Stamp symbol";
-    var stampText = document.createElement("span");
-    stampText.innerHTML = userInformation.stamp;
-    infoCardItems.appendChild(stampIcon);
-    infoCardItems.appendChild(stampText);
-    infoCardContainer.appendChild(infoCardItems);
-    var emailItem = document.createElement("div");
-    emailItem.classList.add("infocard-items");
-    var emailIcon = document.createElement("img");
-    emailIcon.src = "assets/svg/email.svg";
-    emailIcon.alt = "Email symbol";
-    var emailText = document.createElement("span");
-    emailText.innerHTML = userInformation.useremail;
-    emailItem.appendChild(emailIcon);
-    emailItem.appendChild(emailText);
-    infoCardContainer.appendChild(emailItem);
-    var departmentItem = document.createElement("div");
-    departmentItem.classList.add("infocard-items");
-    var departmentIcon = document.createElement("img");
-    departmentIcon.src = "assets/svg/group.svg";
-    departmentIcon.alt = "Group symbol";
-    var departmentText = document.createElement("span");
-    departmentText.innerHTML = userInformation.userdepartment;
-    departmentItem.appendChild(departmentIcon);
-    departmentItem.appendChild(departmentText);
-    infoCardContainer.appendChild(departmentItem);
-    var locationItem = document.createElement("div");
-    locationItem.classList.add("infocard-items");
-    var locationIcon = document.createElement("img");
-    locationIcon.src = "assets/svg/location.svg";
-    locationIcon.alt = "Location symbol";
-    var locationText = document.createElement("span");
-    locationText.innerHTML = userInformation.location;
-    locationItem.appendChild(locationIcon);
-    locationItem.appendChild(locationText);
-    infoCardContainer.appendChild(locationItem);
-    var arrowItem = document.createElement("div");
-    arrowItem.classList.add("arrow-item");
-    var arrowImage = document.createElement("img");
-    arrowImage.src = "assets/svg/arrow.svg";
-    arrowImage.alt = "Arrow symbol";
-    var viewSpan = document.createElement("span");
-    viewSpan.innerHTML = "View";
-    arrowItem.appendChild(viewSpan);
-    arrowItem.appendChild(arrowImage);
-    infoCardContainer.appendChild(arrowItem);
-    return infoCardContainer;
+    createRoleCard(userInformation:RolePageModel){
+        var infoCardContainer = document.createElement("div");
+        infoCardContainer.classList.add("info-card-2");
+        var userProfileBox = document.createElement("div");
+        userProfileBox.classList.add("user-profile-box-2");
+        var userProfileImage = document.createElement("img");
+        userProfileImage.src = "assets/images/man.jpg";
+        userProfileImage.alt = "Human Avatar";
+        var userProfileText = document.createElement("span");
+        userProfileText.classList.add("span-outside");
+        userProfileText.innerHTML = userInformation.username + "<br><span class='span-inside'>" + userInformation.userrole + "</span>";
+        userProfileBox.appendChild(userProfileImage);
+        userProfileBox.appendChild(userProfileText);
+        infoCardContainer.appendChild(userProfileBox);
+        infoCardContainer.appendChild(document.createElement("br"));
+        // Create infocard items
+        var infoCardItems = document.createElement("div");
+        infoCardItems.classList.add("infocard-items");
+        var stampIcon = document.createElement("img");
+        stampIcon.src = "assets/svg/stamp.svg";
+        stampIcon.alt = "Stamp symbol";
+        var stampText = document.createElement("span");
+        stampText.innerHTML = userInformation.stamp;
+        infoCardItems.appendChild(stampIcon);
+        infoCardItems.appendChild(stampText);
+        infoCardContainer.appendChild(infoCardItems);
+        var emailItem = document.createElement("div");
+        emailItem.classList.add("infocard-items");
+        var emailIcon = document.createElement("img");
+        emailIcon.src = "assets/svg/email.svg";
+        emailIcon.alt = "Email symbol";
+        var emailText = document.createElement("span");
+        emailText.innerHTML = userInformation.useremail;
+        emailItem.appendChild(emailIcon);
+        emailItem.appendChild(emailText);
+        infoCardContainer.appendChild(emailItem);
+        var departmentItem = document.createElement("div");
+        departmentItem.classList.add("infocard-items");
+        var departmentIcon = document.createElement("img");
+        departmentIcon.src = "assets/svg/group.svg";
+        departmentIcon.alt = "Group symbol";
+        var departmentText = document.createElement("span");
+        departmentText.innerHTML = userInformation.userdepartment;
+        departmentItem.appendChild(departmentIcon);
+        departmentItem.appendChild(departmentText);
+        infoCardContainer.appendChild(departmentItem);
+        var locationItem = document.createElement("div");
+        locationItem.classList.add("infocard-items");
+        var locationIcon = document.createElement("img");
+        locationIcon.src = "assets/svg/location.svg";
+        locationIcon.alt = "Location symbol";
+        var locationText = document.createElement("span");
+        locationText.innerHTML = userInformation.location;
+        locationItem.appendChild(locationIcon);
+        locationItem.appendChild(locationText);
+        infoCardContainer.appendChild(locationItem);
+        var arrowItem = document.createElement("div");
+        arrowItem.classList.add("arrow-item");
+        var arrowImage = document.createElement("img");
+        arrowImage.src = "assets/svg/arrow.svg";
+        arrowImage.alt = "Arrow symbol";
+        var viewSpan = document.createElement("span");
+        viewSpan.innerHTML = "View";
+        arrowItem.appendChild(viewSpan);
+        arrowItem.appendChild(arrowImage);
+        infoCardContainer.appendChild(arrowItem);
+        return infoCardContainer;
     }
 
     showRoleCard(){
@@ -174,7 +175,7 @@ export class RolePage{
     }
     }
 
-    createCard(data:any){
+    createCard(data:RoleDetailsModel){
     let infocard = document.createElement("div");
     infocard.setAttribute("class", "info-card");
     let inforow = document.createElement("div");

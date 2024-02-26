@@ -7,11 +7,11 @@
         </div>
 
         <div class="add-employee-buttons">
-            <button class="export-button" onclick=app.obj1.addToCsv()>
+            <button class="export-button" onclick=app.employeeobject.addToCsv()>
                 <img src="assets/images/upload.png" alt="Upload image" srcset="">
                 EXPORT
             </button>
-            <button class="add-employee-button" onclick=app.obj1.showAddEmployeePage()>
+            <button class="add-employee-button" onclick="app.employeeobject.showAddEmployeePage()">
                 <img src="assets/svg/pluswhite.svg" alt="Plus icon" srcset="">
             ADD EMPLOYEEE
             </button>    
@@ -25,7 +25,7 @@
             <div class="upload-pic">
                 <img src="assets/images/profile-user.png" alt="Profile symbol" class="profilepic" width="64px" height="64px">
                 <label for="addFilePicker" class="add-uploadpic">Upload Profile Pic</label> 
-                <input type="file"  id="addFilePicker" accept="image/*">
+                <input type="file" id="addFilePicker" onchange="app.employeeobject.handleFileInputChange(event)" accept="image/*" style="display: none;">
             </div>
             <h5>Personal Information</h5>
             <div class="text-field">
@@ -113,10 +113,10 @@
             </div>
 
             <div class="add-buttons">
-                <button class="add-dismiss-button" onclick=app.obj1.showAddEmployeePage()>
+                <button class="add-dismiss-button" onclick=app.employeeobject.showAddEmployeePage()>
                     <span>Dismiss</span>
                 </button>
-                <button class="add-accept-button" type="submit" onclick=app.obj3.addEmployeeData(event)>
+                <button class="add-accept-button" type="submit" onclick=app.addemployeeobject.addEmployeeData(event)>
                     <span>Accept</span>
                 </button>
             </div>
@@ -131,82 +131,82 @@
         <!--Filter By Alphabet Section -->
         <section class="filter">
             <img src="assets/images/filterblack.png" alt="Filter icon" class="filter-image">
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('A')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('A')">
                 <span>A</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('B')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('B')">
                 <span>B</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('C')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('C')">
                 <span>C</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('D')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('D')">
                 <span>D</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('E')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('E')">
                 <span>E</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('F')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('F')">
                 <span>F</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('G')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('G')">
                 <span>G</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('H')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('H')">
                 <span>H</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('I')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('I')">
                 <span>I</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('J')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('J')">
                 <span>J</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('K')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('K')">
                 <span>K</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('L')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('L')">
                 <span>L</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('M')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('M')">
                 <span>M</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('N')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('N')">
                 <span>N</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('O')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('O')">
                 <span>O</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('P')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('P')">
                 <span>P</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('Q')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('Q')">
                 <span>Q</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('R')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('R')">
                 <span>R</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('S')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('S')">
                 <span>S</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('T')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('T')">
                 <span>T</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('U')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('U')">
                 <span>U</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('V')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('V')">
                 <span>V</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('W')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('W')">
                 <span>W</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('X')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('X')">
                 <span>X</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('Y')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('Y')">
                 <span>Y</span>
             </div>
-            <div class="alphabet" onclick="app.obj1.filterByAlphabet('Z')">
+            <div class="alphabet" onclick="app.employeeobject.filterByAlphabet('Z')">
                 <span>Z</span>
             </div>
         </section>
@@ -218,13 +218,68 @@
                     <span>Filter</span>
                     <img src="assets/images/s3filter.png" width="15px" height="15px" alt="Filter icon">
                 </div>
+                <div class="filter-dropdown-1" onclick=app.employeeobject.showFilterStatusDropdown()>
+                    <span id="filter-display1">Status</span>
+                    <img src="assets/images/arrowdown.png" alt="Arrowdown symbol" width="10" height="10">
+                    <div class="filtercheckbox-dropdownlist">
+                        <div class="checkbox-items">
+                            <span>Active</span>
+                            <input type="checkbox" value="Active" name="filter-status" id="status">
+                        </div>
+                        <div class="checkbox-items">
+                            <span>Inactive</span>
+                            <input type="checkbox" value="Inactive" name="filter-status" id="status">
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-dropdown-2" onclick="app.employeeobject.showFilterDepartmentDropdown()">
+                    <span id="filter-display2">Department</span>
+                    <img src="assets/images/arrowdown.png" alt="Arrowdown symbol" width="10" height="10">
+                    <div class="filtercheckbox-dropdownlist2">
+                        <div class="checkbox-items">
+                            <span>Product Engg</span>
+                            <input type="checkbox" value="ProductEngg" name="filter-department" id="departments">
+                        </div>
+                        <div class="checkbox-items">
+                            <span>UIUX</span>
+                            <input type="checkbox" value="UIUX" name="filter-department" id="departments">
+                        </div>
+                        <div class="checkbox-items">
+                            <span>IT</span>
+                            <input type="checkbox" value="IT" name="filter-department" id="departments">
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-dropdown-3" onclick="app.employeeobject.showFilterLocationDropdown()">
+                    <span id="filter-display3">Location</span>
+                    <img src="assets/images/arrowdown.png" alt="Arrowdown symbol" width="10" height="10">
+                    <div class="filtercheckbox-dropdownlist3">
+                        <div class="checkbox-items">
+                            <span>Hyderabad</span>
+                            <input type="checkbox" value="Hyderabad" name="filter-location">
+                        </div>
+                        <div class="checkbox-items">
+                            <span>Mumbai</span>
+                            <input type="checkbox" value="Mumbai" name="filter-location">
+                        </div>
+                        <div class="checkbox-items">
+                            <span>Pune</span>
+                            <input type="checkbox" value="Pune" name="filter-location">
+                        </div>
+                        <div class="checkbox-items">
+                            <span>Delhi</span>
+                            <input type="checkbox" value="Delhi" name="filter-location">
+                        </div>
+                    </div>
+                </div>
+                
             </div>
 
             <div class="filter-right" >
-                <button class="reset-button" onclick=app.obj1.showTableRows()>
+                <button class="reset-button" onclick=app.employeeobject.showTableRows()>
                     <span>Reset</span>
                 </button>
-                <button class="apply-button" type="submit" onclick=app.obj1.filterTableRows()>
+                <button class="apply-button" type="submit" onclick=app.employeeobject.filterTableRows()>
                     <span>Apply</span>
                 </button>
             </div>
@@ -235,7 +290,7 @@
             <div class="delete-add-row">
                 <div class="arrow-down">
                     <img src="assets/images/downarrow.png" alt="Downarrow image" srcset="">
-                    <button class="delete-button" onclick="app.obj1.deleteRow()">
+                    <button class="delete-button">
                         <span>Delete</span>
                     </button>
                 </div>
@@ -251,8 +306,8 @@
                         <div class="inside-labels-user">
                             <span>USER</span>
                             <div class="arrow-sort-filter" >                            
-                                <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px" onclick="app.obj1.sortAccordToCol('USER')">
-                                <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.obj1.sortDecToCol('USER')">
+                                <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px" onclick="app.employeeobject.sortAccordToCol('USER')">
+                                <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.employeeobject.sortDecToCol('USER')">
                             </div>
                         </div>
                     </th>
@@ -260,8 +315,8 @@
                         <div class="inside-labels-user">
                             <span>LOCATION</span>
                             <div class="arrow-sort-filter">                            
-                                <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px"  onclick="app.obj1.sortAccordToCol('LOCATION')">
-                                <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.obj1.sortDecToCol('LOCATION')">
+                                <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px"  onclick="app.employeeobject.sortAccordToCol('LOCATION')">
+                                <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.employeeobject.sortDecToCol('LOCATION')">
                             </div>
                         </div>
                     </th>
@@ -269,8 +324,8 @@
                         <div class="inside-labels-user">
                             <span>DEPARTMENT</span>
                             <div class="arrow-sort-filter" >                            
-                                <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px" onclick="app.obj1.sortAccordToCol('DEPARTMENT')">
-                                <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.obj1.sortDecToCol('DEPARTMENT')">
+                                <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px" onclick="app.employeeobject.sortAccordToCol('DEPARTMENT')">
+                                <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.employeeobject.sortDecToCol('DEPARTMENT')">
                             </div>
                         </div>
                     </th>
@@ -287,8 +342,8 @@
                         <div class="inside-labels-user">
                             <span>EMP NO</span>
                             <div class="arrow-sort-filter" >                            
-                                <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px" onclick="app.obj1.sortAccordToCol('EMPNO')">
-                                <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.obj1.sortDecToCol('EMPNO')">
+                                <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px" onclick="app.employeeobject.sortAccordToCol('EMPNO')">
+                                <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.employeeobject.sortDecToCol('EMPNO')">
                             </div>
                         </div>
                     </th>
@@ -296,8 +351,8 @@
                         <div class="inside-labels-user">
                             <span>STATUS</span>
                             <div class="arrow-sort-filter" >                            
-                                <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px" onclick="app.obj1.sortAccordToCol('STATUS')">
-                                <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.obj1.sortDecToCol('STATUS')">
+                                <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px" onclick="app.employeeobject.sortAccordToCol('STATUS')">
+                                <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.employeeobject.sortDecToCol('STATUS')">
                             </div>
                         </div>
                     </th>
@@ -305,8 +360,8 @@
                         <div class="inside-labels-user">
                             <span>JOIN DT</span>
                             <div class="arrow-sort-filter" >                            
-                                <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px" onclick="app.obj1.sortAccordToCol('JOINDT')">
-                                <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.obj1.sortDecToCol('JOINDT')">
+                                <img src="assets/images/caretarrowup.png" alt="upward and downward arrow" height="7px" width="7px" onclick="app.employeeobject.sortAccordToCol('JOINDT')">
+                                <img src="assets/images/caretdown.png" alt="arrowdown symbol" height="7px" width="7px" onclick="app.employeeobject.sortDecToCol('JOINDT')">
                             </div>
                         </div>
                     </th>

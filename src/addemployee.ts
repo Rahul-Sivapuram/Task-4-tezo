@@ -50,6 +50,7 @@ class Employee {
 }
 
 export class AddEmployee extends EmployeeDetails{
+
     customtoast(){
         setTimeout(()=>{
         let toast:HTMLDivElement=document.querySelector(".toast-employee")! as HTMLDivElement;
@@ -57,7 +58,7 @@ export class AddEmployee extends EmployeeDetails{
         this.showAddEmployeePage();
         },3000);
     }
-      
+
     addEmployeeData(event:Event):void{
         event.preventDefault();
         const empNumber: string = (document.getElementById("emp-number") as HTMLInputElement).value;
@@ -72,8 +73,11 @@ export class AddEmployee extends EmployeeDetails{
         const department: string = (document.getElementById("add-select-department") as HTMLSelectElement).value;
         const assignManager: string = (document.getElementById("managers") as HTMLSelectElement).value;
         const assignProject: string = (document.getElementById("projects") as HTMLSelectElement).value;
+        const profilepic:HTMLImageElement = document.querySelector(".profilepic")! as HTMLImageElement;
+
+        console.log(profilepic.src);
         var EmpModel=new Employee(
-          this.fileUrl,
+          profilepic.src,
           firstName + lastName,
           location,
           department,

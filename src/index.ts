@@ -7,17 +7,16 @@ import { Sidebar } from "./sidebar";
 
 class App{
   employeeobject;
-  rolepageobject;
-  addemployeeobject;
-  addroleobject;
-  sidebar;
   constructor(){
     this.employeeobject=new EmployeeDetails();
-    this.employeeobject.addDOMContentLoadedListener();
-    this.rolepageobject=new RolePage();
-    this.addemployeeobject=new AddEmployee();
-    this.addroleobject=new AddRole();
-    this.sidebar=new Sidebar();
+    this.employeeobject.onload();
   }
+  
+  rolepageobject=new RolePage();
+  addemployeeobject=new AddEmployee();
+  addroleobject=new AddRole();
+  sidebar=new Sidebar();
 }
+
 let app=new App();
+(window as any).app=app;

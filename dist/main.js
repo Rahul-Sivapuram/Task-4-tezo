@@ -1,6 +1,4 @@
-/******/ 
-let app;
-(() => { // webpackBootstrap
+/******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
@@ -8,29 +6,14 @@ let app;
 /*!****************************!*\
   !*** ./src/addemployee.ts ***!
   \****************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AddEmployee = void 0;
-var employee_1 = __webpack_require__(/*! ./employee */ "./src/employee.ts");
-var Employee = /** @class */ (function () {
-    function Employee(profilePic, user, location, department, role, empNo, status, joinDt, email, dob, mobileNumber, jobTitle, manager, project) {
+const employee_1 = __webpack_require__(/*! ./employee */ "./src/employee.ts");
+class Employee {
+    constructor(profilePic, user, location, department, role, empNo, status, joinDt, email, dob, mobileNumber, jobTitle, manager, project) {
         this.ProfilePic = profilePic;
         this.USER = user;
         this.LOCATION = location;
@@ -46,36 +29,32 @@ var Employee = /** @class */ (function () {
         this.Manager = manager;
         this.Project = project;
     }
-    return Employee;
-}());
-var AddEmployee = /** @class */ (function (_super) {
-    __extends(AddEmployee, _super);
-    function AddEmployee() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    AddEmployee.prototype.customtoast = function () {
-        var _this = this;
-        setTimeout(function () {
-            var toast = document.querySelector(".toast-employee");
+}
+class AddEmployee extends employee_1.EmployeeDetails {
+    customtoast() {
+        setTimeout(() => {
+            let toast = document.querySelector(".toast-employee");
             toast.style.display = "none";
-            _this.showAddEmployeePage();
+            this.showAddEmployeePage();
         }, 3000);
-    };
-    AddEmployee.prototype.addEmployeeData = function (event) {
+    }
+    addEmployeeData(event) {
         event.preventDefault();
-        var empNumber = document.getElementById("emp-number").value;
-        var firstName = document.getElementById("first-name").value;
-        var lastName = document.getElementById("last-name").value;
-        var dob = document.getElementById("dob").value;
-        var emailId = document.getElementById("email-id").value;
-        var mobileNo = document.getElementById("mobile-no").value;
-        var joiningDate = document.getElementById("joining-date").value;
-        var location = document.getElementById("add-select-loc").value;
-        var jobTitle = document.getElementById("add-select-jobtitle").value;
-        var department = document.getElementById("add-select-department").value;
-        var assignManager = document.getElementById("managers").value;
-        var assignProject = document.getElementById("projects").value;
-        var EmpModel = new Employee(this.fileUrl, firstName + lastName, location, department, "", empNumber, "Inactive", joiningDate, emailId, dob, mobileNo, jobTitle, assignManager, assignProject);
+        const empNumber = document.getElementById("emp-number").value;
+        const firstName = document.getElementById("first-name").value;
+        const lastName = document.getElementById("last-name").value;
+        const dob = document.getElementById("dob").value;
+        const emailId = document.getElementById("email-id").value;
+        const mobileNo = document.getElementById("mobile-no").value;
+        const joiningDate = document.getElementById("joining-date").value;
+        const location = document.getElementById("add-select-loc").value;
+        const jobTitle = document.getElementById("add-select-jobtitle").value;
+        const department = document.getElementById("add-select-department").value;
+        const assignManager = document.getElementById("managers").value;
+        const assignProject = document.getElementById("projects").value;
+        const profilepic = document.querySelector(".profilepic");
+        console.log(profilepic.src);
+        var EmpModel = new Employee(profilepic.src, firstName + lastName, location, department, "", empNumber, "Inactive", joiningDate, emailId, dob, mobileNo, jobTitle, assignManager, assignProject);
         var NewEmpModel = [EmpModel];
         var existingData = localStorage.getItem("EmployeeData");
         if (mobileNo.length < 10 || mobileNo.length > 10) {
@@ -92,14 +71,13 @@ var AddEmployee = /** @class */ (function (_super) {
                 var jsonString = JSON.stringify(NewEmpModel);
                 localStorage.setItem("EmployeeData", jsonString);
             }
-            var toast = document.querySelector(".toast-employee");
+            let toast = document.querySelector(".toast-employee");
             toast.style.display = "flex";
             this.customtoast();
             this.fileUrl = "";
         }
-    };
-    return AddEmployee;
-}(employee_1.EmployeeDetails));
+    }
+}
 exports.AddEmployee = AddEmployee;
 
 
@@ -109,29 +87,14 @@ exports.AddEmployee = AddEmployee;
 /*!************************!*\
   !*** ./src/addrole.ts ***!
   \************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AddRole = void 0;
-var role_1 = __webpack_require__(/*! ./role */ "./src/role.ts");
-var Rolemodel = /** @class */ (function () {
-    function Rolemodel(empName, roleName, department, description, location) {
+const role_1 = __webpack_require__(/*! ./role */ "./src/role.ts");
+class Rolemodel {
+    constructor(empName, roleName, department, description, location) {
         this.EmpName = empName;
         this.Role = roleName;
         this.Department = department;
@@ -139,29 +102,23 @@ var Rolemodel = /** @class */ (function () {
         this.Location = location;
         this.TotalEmployees = "+43";
     }
-    return Rolemodel;
-}());
-var AddRole = /** @class */ (function (_super) {
-    __extends(AddRole, _super);
-    function AddRole() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    AddRole.prototype.customToast = function () {
-        var _this = this;
-        setTimeout(function () {
-            var toast = document.querySelector(".toast-role");
+}
+class AddRole extends role_1.RolePage {
+    customToast() {
+        setTimeout(() => {
+            let toast = document.querySelector(".toast-role");
             toast.style.display = "none";
-            _this.showAddRolePage();
+            this.showAddRolePage();
         }, 3000);
-    };
-    AddRole.prototype.addRoleData = function (event) {
+    }
+    addRoleData(event) {
         event.preventDefault();
         var roleName = document.getElementById("role-rolename");
         var department = document.getElementById("role-selectdepartment");
         var description = document.getElementById("role-description");
         var location = document.getElementById("role-selectlocation");
         var empname = document.getElementById("searchPlaceholder");
-        var RoleModel = new Rolemodel(empname.value, roleName.value, department.value, location.value, description
+        var RoleModel = new Rolemodel(empname.innerText, roleName.value, department.value, location.value, description
             .value);
         var NewRoleModel = [RoleModel];
         var existingData = localStorage.getItem("RoleData");
@@ -177,20 +134,20 @@ var AddRole = /** @class */ (function (_super) {
         }
         var existingempData = localStorage.getItem("EmployeeData");
         var empdataarray = JSON.parse(existingempData);
-        for (var i in empdataarray) {
-            var doc = empdataarray[i];
-            if (doc.USER == empname && doc.ROLE == "") {
-                doc.ROLE = roleName;
+        for (let i in empdataarray) {
+            let doc = empdataarray[i];
+            console.log(doc);
+            if (doc.USER == empname.innerText && doc.ROLE == "") {
+                doc.ROLE = roleName.value;
                 var jsonstring = JSON.stringify(empdataarray);
                 localStorage.setItem("EmployeeData", jsonstring);
             }
         }
-        var toast = document.querySelector(".toast-role");
+        let toast = document.querySelector(".toast-role");
         toast.style.display = "flex";
         this.customToast();
-    };
-    return AddRole;
-}(role_1.RolePage));
+    }
+}
 exports.AddRole = AddRole;
 
 
@@ -205,8 +162,8 @@ exports.AddRole = AddRole;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.EmployeeDetails = void 0;
-var EmployeeDetails = /** @class */ (function () {
-    function EmployeeDetails() {
+class EmployeeDetails {
+    constructor() {
         this.fileUrl = "";
         this.statusArray = [];
         this.departmentArray = [];
@@ -240,108 +197,125 @@ var EmployeeDetails = /** @class */ (function () {
             ]
         };
     }
-    EmployeeDetails.prototype.insertPagesIntoContainer = function () {
-        var pageContainer = document.querySelector('.employee-page-section');
-        fetch('../employee.html')
-            .then(function (response) {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-            .then(function (html) {
-            pageContainer.innerHTML += html;
-        })
-            .catch(function (error) { return console.error('Error fetching content:', error); });
-        fetch('../role.html')
-            .then(function (response) {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-            .then(function (html) {
-            pageContainer.innerHTML += html;
-        })
-            .catch(function (error) { return console.error('Error fetching content:', error); });
-        fetch('../roledetails.html')
-            .then(function (response) {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-            .then(function (html) {
-            pageContainer.innerHTML += html;
-        })
-            .catch(function (error) { return console.error('Error fetching content:', error); });
-    };
-    EmployeeDetails.prototype.addDOMContentLoadedListener = function () {
-        var _this = this;
-        document.addEventListener("DOMContentLoaded", function () {
-            _this.insertPagesIntoContainer();
+    onload() {
+        document.addEventListener("DOMContentLoaded", () => {
+            this.insertPagesIntoContainer();
         });
-    };
-    EmployeeDetails.prototype.handleFileInputChange = function () {
-        var _this = this;
-        var fileInput = document.getElementById("addFilePicker");
-        var profilepic = document.querySelector(".profilepic");
-        fileInput.addEventListener('change', function () {
-            var fr = new FileReader();
-            fr.readAsDataURL(fileInput.files[0]);
-            fr.addEventListener('load', function () {
-                _this.fileUrl != fr.result;
-                profilepic.src = _this.fileUrl;
-                console.log(_this.fileUrl);
+    }
+    showFilterStatusDropdown() {
+        var list = document.querySelector(".filtercheckbox-dropdownlist");
+        var placeholder = document.getElementById("filter-display1");
+        console.log("work");
+        var chk = document.querySelectorAll('input[type="checkbox"][name="filter-status"]');
+        let arr = [];
+        if (!list.style.display || list.style.display === "none") {
+            list.style.display = "flex";
+        }
+        else {
+            list.style.display = "none";
+        }
+        chk.forEach((checkbox) => {
+            checkbox.addEventListener("click", () => {
+                arr = [];
+                chk.forEach((checkbox) => {
+                    if (checkbox.checked) {
+                        arr.push(checkbox.value);
+                    }
+                });
+                this.statusArray = arr;
+                console.log(this.statusArray);
+                placeholder.innerText = this.statusArray.length + " Selected";
             });
         });
-        profilepic.src = "assets/images/profile-user.png";
-        this.fileUrl = "";
-    };
-    EmployeeDetails.prototype.alphabetStateChange = function () {
-        var _this = this;
+    }
+    insertPagesIntoContainer() {
+        let pageContainer = document.querySelector('.employee-page-section');
+        fetch('../employee.html')
+            .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+            .then(html => {
+            pageContainer.innerHTML += html;
+            this.getDepartmentCount("UIUX", "ProductEngg", "IT");
+            this.alphabetStateChange();
+        })
+            .catch(error => console.error('Error fetching content:', error));
+        fetch('../role.html')
+            .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+            .then(html => {
+            pageContainer.innerHTML += html;
+        })
+            .catch(error => console.error('Error fetching content:', error));
+        fetch('../roledetails.html')
+            .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+            .then(html => {
+            pageContainer.innerHTML += html;
+        })
+            .catch(error => console.error('Error fetching content:', error));
+    }
+    handleFileInputChange(event) {
+        const fileInput = document.getElementById("addFilePicker");
+        const profilepic = document.querySelector(".profilepic");
+        if (event.target instanceof HTMLInputElement && event.target.files && event.target.files.length > 0) {
+            const fr = new FileReader();
+            fr.readAsDataURL(event.target.files[0]);
+            fr.addEventListener('load', () => {
+                this.fileUrl = fr.result;
+                profilepic.src = this.fileUrl;
+                console.log(this.fileUrl);
+            });
+        }
+        if (!profilepic.src || profilepic.src === "") {
+            profilepic.src = "assets/images/profile-user.png";
+        }
+    }
+    alphabetStateChange() {
         var containers = document.querySelectorAll(".alphabet");
         var previousContainer = null;
         var clickTimer;
-        containers.forEach(function (container) {
-            container.addEventListener("click", function (event) {
+        containers.forEach((container) => {
+            container.addEventListener("click", (event) => {
                 var spanValue = container.querySelector("span");
                 if (clickTimer) {
                     clearTimeout(clickTimer);
                     clickTimer = null;
                     container.classList.remove("change-alphabet");
-                    _this.filterAlphabet = "";
-                    _this.showTableRows();
+                    this.filterAlphabet = "";
+                    this.showTableRows();
                 }
                 else {
-                    clickTimer = setTimeout(function () {
+                    clickTimer = setTimeout(() => {
                         clickTimer = null;
                         if (previousContainer !== null) {
                             previousContainer.classList.remove("change-alphabet");
                         }
                         container.classList.add("change-alphabet");
-                        _this.filterAlphabet = (spanValue === null || spanValue === void 0 ? void 0 : spanValue.textContent) || "";
+                        this.filterAlphabet = (spanValue === null || spanValue === void 0 ? void 0 : spanValue.textContent) || "";
                         previousContainer = container;
                     }, 300);
                 }
             });
         });
-    };
-    EmployeeDetails.prototype.createMultiSelectDropDown = function () {
-        var filterleft = document.querySelector(".filter-left");
-        var dropone = this.createFilterDropdown(this.filterDropdownModel, "filter-dropdown-1", "filter-display1", "filtercheckbox-dropdownlist", this.showFilterStatusDropdown);
-        filterleft.appendChild(dropone);
-        var droptwo = this.createFilterDropdown(this.filterDropdownModel2, "filter-dropdown-2", "filter-display2", "filtercheckbox-dropdownlist2", this.showFilterDepartmentDropdown);
-        filterleft.appendChild(droptwo);
-        var dropthree = this.createFilterDropdown(this.filterDropdownModel3, "filter-dropdown-3", "filter-display3", "filtercheckbox-dropdownlist3", this.showFilterLocationDropdown);
-        filterleft.appendChild(dropthree);
-    };
-    EmployeeDetails.prototype.createFilterDropdown = function (model, divId, spanId, dropDownId, callback) {
-        var filterDropdownContainer = document.createElement("div");
+    }
+    createFilterDropdown(model, divId, spanId, dropDownId, callback) {
+        let filterDropdownContainer = document.createElement("div");
         filterDropdownContainer.classList.add(divId);
-        filterDropdownContainer.onclick = function () {
-            callback();
-        };
+        filterDropdownContainer.addEventListener("click", () => {
+            console.log("hi");
+        });
         var filterDisplaySpan = document.createElement("span");
         filterDisplaySpan.id = spanId;
         filterDisplaySpan.textContent = model.filterDisplayName;
@@ -370,39 +344,38 @@ var EmployeeDetails = /** @class */ (function () {
         });
         filterDropdownContainer.appendChild(dropdownListContainer);
         return filterDropdownContainer;
-    };
-    EmployeeDetails.prototype.getDepartmentCount = function (cat1, cat2, cat3) {
-        var _this = this;
-        var existingdata = localStorage.getItem("EmployeeData");
-        var array = JSON.parse(existingdata);
-        array.filter(function (val) {
+    }
+    getDepartmentCount(cat1, cat2, cat3) {
+        let existingdata = localStorage.getItem("EmployeeData");
+        let array = JSON.parse(existingdata);
+        array.filter((val) => {
             if (val.DEPARTMENT == cat1) {
-                _this.uiuxCount += 1;
+                this.uiuxCount += 1;
             }
             else if (val.DEPARTMENT == cat2) {
-                _this.itCount += 1;
+                this.itCount += 1;
             }
             else if (val.DEPARTMENT == cat3 || val.DEPARTMENT == "Product Engg") {
-                _this.peCount += 1;
+                this.peCount += 1;
             }
-            var itBox = document.querySelector(".department-button-square-one");
-            var uiuxBox = document.querySelector(".department-button-square-two");
-            var peBox = document.querySelector(".department-button-square-three");
-            itBox.textContent = _this.itCount.toString();
-            uiuxBox.textContent = _this.uiuxCount.toString();
-            peBox.textContent = _this.peCount.toString();
+            let itBox = document.querySelector(".department-button-square-one");
+            let uiuxBox = document.querySelector(".department-button-square-two");
+            let peBox = document.querySelector(".department-button-square-three");
+            itBox.textContent = this.itCount.toString();
+            uiuxBox.textContent = this.uiuxCount.toString();
+            peBox.textContent = this.peCount.toString();
         });
-    };
-    EmployeeDetails.prototype.createUserRow = function (data) {
+    }
+    createUserRow(data) {
         var tableRow = document.createElement('tr');
         var radioCell = document.createElement('td');
         var radioInput = document.createElement('input');
-        var deletebutton = document.querySelector(".delete-button");
+        let deletebutton = document.querySelector(".delete-button");
         radioInput.setAttribute('type', 'checkbox');
         radioInput.setAttribute('name', 'checkbox4');
         radioInput.setAttribute('id', 'checkbox4');
-        radioInput.onchange = function (e) {
-            var checkinput = e.target;
+        radioInput.onchange = (e) => {
+            const checkinput = e.target;
             if (checkinput.checked) {
                 deletebutton.classList.add("checked-delete-button");
             }
@@ -433,7 +406,7 @@ var EmployeeDetails = /** @class */ (function () {
         var userDetailsSpan = document.createElement('span');
         userDetailsSpan.classList.add('span-outside-userprofilebox');
         // Add user name and email to details span
-        userDetailsSpan.innerHTML = "".concat(data.USER, "<br><span class=\"span-inside-userprofilebox\">").concat(data.EMAIL, "</span>");
+        userDetailsSpan.innerHTML = `${data.USER}<br><span class="span-inside-userprofilebox">${data.EMAIL}</span>`;
         userProfileCell.appendChild(userDetailsSpan);
         // Add user profile cell to the table row
         tableRow.appendChild(userProfileCell);
@@ -453,7 +426,7 @@ var EmployeeDetails = /** @class */ (function () {
         var statusCell = document.createElement('td');
         var activeButton = document.createElement('div');
         activeButton.classList.add('active-button');
-        activeButton.innerHTML = "<span>".concat(data.STATUS, "</span>");
+        activeButton.innerHTML = `<span>${data.STATUS}</span>`;
         statusCell.appendChild(activeButton);
         tableRow.appendChild(statusCell);
         var joinDateCell = document.createElement('td');
@@ -464,9 +437,9 @@ var EmployeeDetails = /** @class */ (function () {
         dotsImage.setAttribute('src', 'assets/svg/threedots.svg');
         dotsImage.setAttribute('alt', 'Threedots symbol');
         dotsImage.classList.add("own-model-button");
-        dotsImage.onclick = function (event) {
-            var target = event.target;
-            var ownModalDiv = target.nextElementSibling;
+        dotsImage.onclick = (event) => {
+            const target = event.target;
+            const ownModalDiv = target.nextElementSibling;
             if (ownModalDiv) {
                 ownModalDiv.style.display = (ownModalDiv.style.display === 'block') ? 'none' : 'block';
             }
@@ -489,68 +462,33 @@ var EmployeeDetails = /** @class */ (function () {
         dotsCell.appendChild(ownModalDiv);
         tableRow.appendChild(dotsCell);
         return tableRow;
-    };
-    EmployeeDetails.prototype.showFilterStatusDropdown = function () {
-        var _this = this;
-        var list = document.querySelector(".filtercheckbox-dropdownlist");
-        var placeholder = document.getElementById("filter-display1");
-        var chk = document.querySelectorAll('input[type="checkbox"][name="filter-status"]');
-        if (!list.style.display || list.style.display === "none") {
-            list.style.display = "flex";
-        }
-        else {
-            list.style.display = "none";
-        }
-        var arr = [];
-        chk.forEach(function (event) {
-            event.addEventListener("click", function () {
-                var v = event.value;
-                if (event.checked) {
-                    arr.push(v);
-                }
-                else {
-                    var index = arr.indexOf(v);
-                    if (index !== -1) {
-                        arr.splice(index, 1);
-                    }
-                }
-                _this.statusArray = arr;
-                placeholder.innerText = arr.length + " " + "Selected";
-            });
-        });
-    };
-    EmployeeDetails.prototype.showFilterDepartmentDropdown = function () {
-        var _this = this;
+    }
+    showFilterDepartmentDropdown() {
         var list = document.querySelector(".filtercheckbox-dropdownlist2");
         var placeholder = document.getElementById("filter-display2");
         var chk = document.querySelectorAll('input[type="checkbox"][name="filter-department"]');
+        let arr = [];
         if (!list.style.display || list.style.display === "none") {
             list.style.display = "flex";
         }
         else {
             list.style.display = "none";
         }
-        var arr = [];
-        chk.forEach(function (event) {
-            event.addEventListener("click", function () {
-                var v = event.value;
-                if (event.checked) {
-                    arr.push(v);
-                }
-                else {
-                    var index = arr.indexOf(v);
-                    if (index !== -1) {
-                        arr.splice(index, 1);
+        chk.forEach((checkbox) => {
+            checkbox.addEventListener("click", () => {
+                arr = []; // Reset the array
+                chk.forEach((checkbox) => {
+                    if (checkbox.checked) {
+                        arr.push(checkbox.value);
                     }
-                }
-                _this.departmentArray = arr;
-                console.log(_this.departmentArray);
-                placeholder.innerText = arr.length + " " + "Selected";
+                });
+                this.departmentArray = arr;
+                console.log(this.departmentArray);
+                placeholder.innerText = this.departmentArray.length + " Selected";
             });
         });
-    };
-    EmployeeDetails.prototype.showFilterLocationDropdown = function () {
-        var _this = this;
+    }
+    showFilterLocationDropdown() {
         var list = document.querySelector(".filtercheckbox-dropdownlist3");
         var placeholder = document.getElementById("filter-display3");
         var chk = document.querySelectorAll('input[type="checkbox"][name="filter-location"]');
@@ -560,35 +498,45 @@ var EmployeeDetails = /** @class */ (function () {
         else {
             list.style.display = "none";
         }
-        var arr = [];
-        chk.forEach(function (event) {
-            event.addEventListener("click", function () {
-                var v = event.value;
-                if (event.checked) {
-                    arr.push(v);
-                }
-                else {
-                    var index = arr.indexOf(v);
-                    if (index !== -1) {
-                        arr.splice(index, 1);
+        let arr = [];
+        chk.forEach((checkbox) => {
+            checkbox.addEventListener("click", () => {
+                arr = [];
+                chk.forEach((checkbox) => {
+                    if (checkbox.checked) {
+                        arr.push(checkbox.value);
                     }
-                }
-                _this.locationArray = arr;
-                console.log(_this.locationArray);
-                placeholder.innerText = arr.length + " " + "Selected";
+                });
+                this.locationArray = arr;
+                console.log(this.locationArray);
+                placeholder.innerText = this.locationArray.length + " Selected";
             });
         });
-    };
-    EmployeeDetails.prototype.filterSection = function () {
-        var filteroption = document.querySelector(".filter-option");
+    }
+    createMultiSelectDropDown() {
+        let filterleft = document.querySelector(".filter-left");
+        if (filterleft) {
+            let dropone = this.createFilterDropdown(this.filterDropdownModel, "filter-dropdown-1", "filter-display1", "filtercheckbox-dropdownlist", this.showFilterStatusDropdown);
+            filterleft.appendChild(dropone);
+            let droptwo = this.createFilterDropdown(this.filterDropdownModel2, "filter-dropdown-2", "filter-display2", "filtercheckbox-dropdownlist2", this.showFilterDepartmentDropdown);
+            filterleft.appendChild(droptwo);
+            let dropthree = this.createFilterDropdown(this.filterDropdownModel3, "filter-dropdown-3", "filter-display3", "filtercheckbox-dropdownlist3", this.showFilterLocationDropdown);
+            filterleft.appendChild(dropthree);
+        }
+        else {
+            console.error("Element with class 'filter-left' not found.");
+        }
+    }
+    filterSection() {
+        const filteroption = document.querySelector(".filter-option");
         if (filteroption.style.display == "none") {
             filteroption.style.display = "flex";
         }
         else {
             filteroption.style.display = "none";
         }
-    };
-    EmployeeDetails.prototype.showAddEmployeePage = function () {
+    }
+    showAddEmployeePage() {
         var mainpage = document.querySelector(".table-part");
         var emppage = document.querySelector(".addemployee-page");
         var addemp = document.querySelector(".add-employee");
@@ -607,47 +555,47 @@ var EmployeeDetails = /** @class */ (function () {
             addemp.style.display = "none";
             emppage.style.display = "block";
         }
-    };
-    EmployeeDetails.prototype.deleteRow = function () {
-        var employeeDataString = localStorage.getItem('EmployeeData');
-        var employeeData = JSON.parse(employeeDataString);
-        var indextodelete = [15, 16, 17, 18, 19];
-        indextodelete.sort(function (a, b) { return b - a; });
-        indextodelete.forEach(function (index) {
+    }
+    deleteRow() {
+        const employeeDataString = localStorage.getItem('EmployeeData');
+        let employeeData = JSON.parse(employeeDataString);
+        const indextodelete = [0];
+        indextodelete.sort((a, b) => b - a);
+        indextodelete.forEach(index => {
             if (index >= 0 && index < employeeData.length) {
                 employeeData.splice(index, 1);
             }
             else {
-                console.log("Invalid index ".concat(index, "."));
+                console.log(`Invalid index ${index}.`);
             }
         });
-        var updatedEmployeeDataString = JSON.stringify(employeeData);
+        const updatedEmployeeDataString = JSON.stringify(employeeData);
         localStorage.setItem('EmployeeData', updatedEmployeeDataString);
         console.log('Objects deleted successfully.');
-    };
-    EmployeeDetails.prototype.addToCsv = function () {
+    }
+    addToCsv() {
         var _a, _b;
-        var table = document.getElementById('UserTable');
+        const table = document.getElementById('UserTable');
         if (!table)
             return;
-        var data = [];
-        for (var i = 0; i < table.rows.length; i++) {
-            var row = [];
-            var tableRow = table.rows[i];
-            for (var j = 0; j < tableRow.cells.length; j++) {
-                var cell = tableRow.cells[j];
-                row.push((_b = (_a = cell.textContent) === null || _a === void 0 ? void 0 : _a.trim()) !== null && _b !== void 0 ? _b : ''); // Use optional chaining and nullish coalescing operator
+        const data = [];
+        for (let i = 0; i < table.rows.length; i++) {
+            const row = [];
+            const tableRow = table.rows[i];
+            for (let j = 0; j < tableRow.cells.length; j++) {
+                const cell = tableRow.cells[j];
+                row.push((_b = (_a = cell.textContent) === null || _a === void 0 ? void 0 : _a.trim()) !== null && _b !== void 0 ? _b : '');
             }
             data.push(row.join(','));
         }
-        var csvContent = data.join('\n');
-        var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
-        var link = document.createElement('a');
+        const csvContent = data.join('\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
+        const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
         link.download = 'data.csv';
         link.click();
-    };
-    EmployeeDetails.prototype.filterByAlphabet = function (inp) {
+    }
+    filterByAlphabet(inp) {
         var table = document.getElementById('UserTable');
         var existingdata = localStorage.getItem("EmployeeData");
         var array = JSON.parse(existingdata);
@@ -656,8 +604,8 @@ var EmployeeDetails = /** @class */ (function () {
             table.querySelector('tbody').innerHTML = "";
             var filtered = [];
             filtered = [];
-            for (var i in array) {
-                var doc = array[i];
+            for (let i in array) {
+                let doc = array[i];
                 if (doc.USER[0] == inp) {
                     filtered.push(doc);
                 }
@@ -667,8 +615,8 @@ var EmployeeDetails = /** @class */ (function () {
             }
             if (filtered.length > 0) {
                 ficon.src = "assets/images/filter.png";
-                for (var j in filtered) {
-                    var res = this.createUserRow(filtered[j]);
+                for (let j in filtered) {
+                    let res = this.createUserRow(filtered[j]);
                     table.querySelector('tbody').appendChild(res);
                 }
             }
@@ -676,11 +624,11 @@ var EmployeeDetails = /** @class */ (function () {
                 ficon.src = "assets/images/filterblack.png";
             }
         }
-    };
-    EmployeeDetails.prototype.sortAccordToCol = function (inp) {
+    }
+    sortAccordToCol(inp) {
         var existingdata = localStorage.getItem("EmployeeData");
         var array = JSON.parse(existingdata);
-        array.sort(function (a, b) {
+        array.sort((a, b) => {
             if (a[inp] < b[inp])
                 return -1;
             if (a[inp] > b[inp])
@@ -690,15 +638,15 @@ var EmployeeDetails = /** @class */ (function () {
         console.log(array);
         var table = document.getElementById('UserTable');
         table.querySelector('tbody').innerHTML = "";
-        for (var i in array) {
-            var doc = this.createUserRow(array[i]);
+        for (let i in array) {
+            let doc = this.createUserRow(array[i]);
             table.querySelector('tbody').appendChild(doc);
         }
-    };
-    EmployeeDetails.prototype.sortDecToCol = function (inp) {
+    }
+    sortDecToCol(inp) {
         var existingdata = localStorage.getItem("EmployeeData");
         var array = JSON.parse(existingdata);
-        array.sort(function (a, b) {
+        array.sort((a, b) => {
             if (a[inp] < b[inp])
                 return 1;
             if (a[inp] > b[inp])
@@ -708,61 +656,58 @@ var EmployeeDetails = /** @class */ (function () {
         console.log(array);
         var table = document.getElementById('UserTable');
         table.querySelector('tbody').innerHTML = "";
-        for (var i in array) {
-            var doc = this.createUserRow(array[i]);
+        for (let i in array) {
+            let doc = this.createUserRow(array[i]);
             table.querySelector('tbody').appendChild(doc);
         }
-    };
-    EmployeeDetails.prototype.showTableRows = function () {
+    }
+    showTableRows() {
         var table = document.getElementById('UserTable');
         var data = localStorage.getItem("EmployeeData");
         var dataarray = JSON.parse(data);
         table.querySelector("tbody").innerHTML = "";
-        for (var i in dataarray) {
-            var doc = this.createUserRow(dataarray[i]);
+        for (let i in dataarray) {
+            let doc = this.createUserRow(dataarray[i]);
             table.querySelector('tbody').appendChild(doc);
         }
-    };
-    EmployeeDetails.prototype.filterData = function (dataarray, selectedStatus, selectedLocation, selectedDepartment) {
-        var _this = this;
-        return dataarray.filter(function (obj) {
-            var nameStartsWithSpanValue = _this.filterAlphabet && obj.USER.startsWith(_this.filterAlphabet);
+    }
+    filterData(dataarray, selectedStatus, selectedLocation, selectedDepartment) {
+        return dataarray.filter(obj => {
+            var nameStartsWithSpanValue = this.filterAlphabet && obj.USER.startsWith(this.filterAlphabet);
             return (selectedStatus.includes(obj.STATUS) || selectedStatus.length === 0) &&
                 (selectedLocation.includes(obj.LOCATION) || selectedLocation.length === 0) &&
                 (selectedDepartment.includes(obj.DEPARTMENT) || selectedDepartment.length === 0) &&
-                (_this.filterAlphabet ? nameStartsWithSpanValue : true);
+                (this.filterAlphabet ? nameStartsWithSpanValue : true);
         });
-    };
-    EmployeeDetails.prototype.filterTableRows = function () {
-        var _this = this;
+    }
+    filterTableRows() {
         var table = document.getElementById('UserTable');
         var data = localStorage.getItem("EmployeeData");
         var dataarray = JSON.parse(data);
-        var filteredData = this.filterData(dataarray, this.statusArray, this.locationArray, this.departmentArray);
-        setTimeout(function () {
+        const filteredData = this.filterData(dataarray, this.statusArray, this.locationArray, this.departmentArray);
+        setTimeout(() => {
             table.querySelector('tbody').innerHTML = "";
             console.log(table.querySelector('tbody'));
-            filteredData.forEach(function (row) {
-                var res = _this.createUserRow(row);
+            filteredData.forEach((row) => {
+                var res = this.createUserRow(row);
                 table.querySelector('tbody').appendChild(res);
             });
         }, 10);
-    };
-    EmployeeDetails.prototype.showSpecific = function (inp, cat) {
+    }
+    showSpecific(inp, cat) {
         var table = document.getElementById('UserTable');
         table.querySelector('tbody').innerHTML = "";
         var data = localStorage.getItem("EmployeeData");
         var dataarray = JSON.parse(data);
-        for (var i in dataarray) {
+        for (let i in dataarray) {
             var doc = dataarray[i];
             if (inp == doc[cat]) {
-                var res = this.createUserRow(doc);
+                let res = this.createUserRow(doc);
                 table.querySelector('tbody').appendChild(res);
             }
         }
-    };
-    return EmployeeDetails;
-}());
+    }
+}
 exports.EmployeeDetails = EmployeeDetails;
 
 
@@ -777,8 +722,8 @@ exports.EmployeeDetails = EmployeeDetails;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.RolePage = void 0;
-var RolePage = /** @class */ (function () {
-    function RolePage() {
+class RolePage {
+    constructor() {
         this.users = [
             {
                 "username": "Robert Fox",
@@ -860,7 +805,7 @@ var RolePage = /** @class */ (function () {
             }
         ];
     }
-    RolePage.prototype.createRoleCard = function (userInformation) {
+    createRoleCard(userInformation) {
         var infoCardContainer = document.createElement("div");
         infoCardContainer.classList.add("info-card-2");
         var userProfileBox = document.createElement("div");
@@ -927,20 +872,19 @@ var RolePage = /** @class */ (function () {
         arrowItem.appendChild(arrowImage);
         infoCardContainer.appendChild(arrowItem);
         return infoCardContainer;
-    };
-    RolePage.prototype.showRoleCard = function () {
+    }
+    showRoleCard() {
         var space = document.querySelector(".info-cards-list-2");
         space.innerHTML = "";
-        for (var i in this.users) {
-            var res = this.createRoleCard(this.users[i]);
+        for (let i in this.users) {
+            let res = this.createRoleCard(this.users[i]);
             space.appendChild(res);
         }
-    };
-    RolePage.prototype.createCard = function (data) {
-        var _this = this;
-        var infocard = document.createElement("div");
+    }
+    createCard(data) {
+        let infocard = document.createElement("div");
         infocard.setAttribute("class", "info-card");
-        var inforow = document.createElement("div");
+        let inforow = document.createElement("div");
         var imgelmnt = document.createElement("img");
         var h = document.createElement("h5");
         inforow.setAttribute("class", "info-row");
@@ -951,11 +895,11 @@ var RolePage = /** @class */ (function () {
         inforow.appendChild(imgelmnt);
         infocard.appendChild(inforow);
         //row2
-        var inforow1 = document.createElement("div");
-        var spanins = document.createElement('span');
+        let inforow1 = document.createElement("div");
+        let spanins = document.createElement('span');
         var imgelmnt1 = document.createElement("img");
         var span = document.createElement("span");
-        var infocarditems = document.createElement("div");
+        let infocarditems = document.createElement("div");
         inforow1.setAttribute("class", "info-row");
         infocarditems.setAttribute("class", "infocard-items");
         imgelmnt1.src = "assets/svg/group.svg";
@@ -968,11 +912,11 @@ var RolePage = /** @class */ (function () {
         inforow1.appendChild(spanins);
         infocard.appendChild(inforow1);
         //row3
-        var inforow2 = document.createElement("div");
+        let inforow2 = document.createElement("div");
         var spaninside = document.createElement("span");
         var imgelmnt2 = document.createElement("img");
         var span2 = document.createElement("span");
-        var infocarditems2 = document.createElement("div");
+        let infocarditems2 = document.createElement("div");
         inforow2.setAttribute("class", "info-row");
         infocarditems2.setAttribute("class", "infocard-items");
         imgelmnt2.src = "assets/svg/location.svg";
@@ -985,17 +929,17 @@ var RolePage = /** @class */ (function () {
         inforow2.appendChild(spaninside);
         infocard.appendChild(inforow2);
         //row4
-        var inforow3 = document.createElement('div');
-        var span3 = document.createElement('span');
-        var span3ins = document.createElement('span');
-        var div1 = document.createElement('div');
-        var div2 = document.createElement('div');
-        var div3 = document.createElement('div');
-        var div4 = document.createElement('div');
-        var div5 = document.createElement('div');
-        var img1 = document.createElement('img');
-        var img2 = document.createElement('img');
-        var img3 = document.createElement('img');
+        let inforow3 = document.createElement('div');
+        let span3 = document.createElement('span');
+        let span3ins = document.createElement('span');
+        let div1 = document.createElement('div');
+        let div2 = document.createElement('div');
+        let div3 = document.createElement('div');
+        let div4 = document.createElement('div');
+        let div5 = document.createElement('div');
+        let img1 = document.createElement('img');
+        let img2 = document.createElement('img');
+        let img3 = document.createElement('img');
         inforow3.setAttribute('class', 'info-row');
         div1.setAttribute('class', 'profiles-many');
         div2.setAttribute('class', 'img1');
@@ -1019,44 +963,44 @@ var RolePage = /** @class */ (function () {
         inforow3.appendChild(div1);
         infocard.appendChild(inforow3);
         //row5
-        var inforow4 = document.createElement('div');
+        let inforow4 = document.createElement('div');
         inforow4.setAttribute('class', 'arrow-item');
-        var span4 = document.createElement('span');
-        var img4 = document.createElement('img');
-        var div6 = document.createElement('div');
+        let span4 = document.createElement('span');
+        let img4 = document.createElement('img');
+        let div6 = document.createElement('div');
         span4.innerText = "View all Employees";
         img4.src = "assets/svg/arrow.svg";
-        img4.onclick = function () {
-            _this.showAllEmp();
+        img4.onclick = () => {
+            this.showAllEmp();
         };
         div6.appendChild(span4);
         div6.appendChild(img4);
         inforow4.appendChild(div6);
         infocard.appendChild(inforow4);
         return infocard;
-    };
-    RolePage.prototype.showCards = function () {
-        var infocardslist = document.querySelector(".info-cards-list");
+    }
+    showCards() {
+        let infocardslist = document.querySelector(".info-cards-list");
         infocardslist.innerHTML = "";
         for (var i in this.roleData) {
             var res = this.createCard(this.roleData[i]);
             infocardslist.appendChild(res);
         }
-    };
-    RolePage.prototype.filter = function () {
+    }
+    filter() {
         var selectedlocation = document.getElementById("role-location");
         var selecteddepartment = document.getElementById("role-departments");
-        var infolist = document.querySelector(".info-cards-list");
+        let infolist = document.querySelector(".info-cards-list");
         infolist.innerHTML = "";
         for (var i in this.roleData) {
-            var doc = this.roleData[i];
+            const doc = this.roleData[i];
             if (doc.Department == selecteddepartment.value && doc.Location == selectedlocation.value) {
                 var res = this.createCard(doc);
                 infolist.appendChild(res);
             }
         }
-    };
-    RolePage.prototype.showAllEmp = function () {
+    }
+    showAllEmp() {
         var roledetailspage = document.querySelector(".roledetails-page");
         var rolepage = document.querySelector(".role-page");
         this.showRoleCard();
@@ -1067,8 +1011,8 @@ var RolePage = /** @class */ (function () {
         else {
             rolepage.style.display = "none";
         }
-    };
-    RolePage.prototype.showFieldDropdown = function () {
+    }
+    showFieldDropdown() {
         var list = document.querySelector(".checkbox-dropdownlist");
         var checkboxes = document.querySelectorAll('input[type="checkbox"][name="dp-empdetails"]');
         var placeholder = document.getElementById("searchPlaceholder");
@@ -1088,8 +1032,8 @@ var RolePage = /** @class */ (function () {
                 placeholder.innerText = searchinp.value;
             }
         }
-    };
-    RolePage.prototype.showAddRolePage = function () {
+    }
+    showAddRolePage() {
         var usertable = document.querySelector(".info-cards-list");
         var rolepage = document.querySelector(".addnewrole-page");
         var filterrole = document.querySelector(".filterrole");
@@ -1116,8 +1060,8 @@ var RolePage = /** @class */ (function () {
             rolepage.style.display = "none";
             addrole.style.display = "flex";
         }
-    };
-    RolePage.prototype.showRole = function () {
+    }
+    showRole() {
         var roledetailspage = document.querySelector(".roledetails-page");
         var employeepage = document.querySelector(".employee-page");
         if (!roledetailspage.style.display || roledetailspage.style.display == "none") {
@@ -1128,17 +1072,16 @@ var RolePage = /** @class */ (function () {
             roledetailspage.style.display = "none";
         }
         this.showCards();
-    };
-    RolePage.prototype.goback = function () {
+    }
+    goback() {
         var rolepage = document.querySelector(".role-page");
         var roledetailspage = document.querySelector(".roledetails-page");
         if (!rolepage.style.display || rolepage.style.display == "block") {
             rolepage.style.display = "none";
             roledetailspage.style.display = "block";
         }
-    };
-    return RolePage;
-}());
+    }
+}
 exports.RolePage = RolePage;
 
 
@@ -1148,54 +1091,35 @@ exports.RolePage = RolePage;
 /*!************************!*\
   !*** ./src/sidebar.ts ***!
   \************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Sidebar = void 0;
-var employee_1 = __webpack_require__(/*! ./employee */ "./src/employee.ts");
-var Sidebar = /** @class */ (function (_super) {
-    __extends(Sidebar, _super);
-    function Sidebar() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Sidebar.prototype.showSidebar = function () {
-        var sidebar = document.querySelector(".sidebar");
-        var navbarpages = document.querySelector(".navbar-pages");
-        var sidebarsmallsidebar = document.querySelector(".sidebar-smallsidebar");
-        var smallsidebar = document.querySelector(".small-sidebar");
+const employee_1 = __webpack_require__(/*! ./employee */ "./src/employee.ts");
+class Sidebar extends employee_1.EmployeeDetails {
+    showSidebar() {
+        const sidebar = document.querySelector(".sidebar");
+        const navbarpages = document.querySelector(".navbar-pages");
+        const sidebarsmallsidebar = document.querySelector(".sidebar-smallsidebar");
+        const smallsidebar = document.querySelector(".small-sidebar");
         smallsidebar.style.display = "none";
         sidebar.style.display = "flex";
         sidebarsmallsidebar.style.width = "16%";
         navbarpages.style.width = "84%";
-    };
-    Sidebar.prototype.hideSidebar = function () {
-        var sidebar = document.querySelector(".sidebar");
-        var navbarpages = document.querySelector(".navbar-pages");
-        var sidebarsmallsidebar = document.querySelector(".sidebar-smallsidebar");
-        var smallsidebar = document.querySelector(".small-sidebar");
+    }
+    hideSidebar() {
+        const sidebar = document.querySelector(".sidebar");
+        const navbarpages = document.querySelector(".navbar-pages");
+        const sidebarsmallsidebar = document.querySelector(".sidebar-smallsidebar");
+        const smallsidebar = document.querySelector(".small-sidebar");
         sidebar.style.display = "none";
         smallsidebar.style.display = "flex";
         sidebarsmallsidebar.style.width = "3%";
         sidebarsmallsidebar.style.height = "100%";
         navbarpages.style.width = "95%";
-    };
-    Sidebar.prototype.showDropDown = function () {
+    }
+    showDropDown() {
         var arrow = document.querySelector(".arrow");
         var dropdown = document.querySelector(".userstatus-menu");
         arrow.src = "assets/svg/arrowdown.svg";
@@ -1206,8 +1130,8 @@ var Sidebar = /** @class */ (function (_super) {
             arrow.src = "assets/svg/arrowforward.svg";
             dropdown.style.display = "none";
         }
-    };
-    Sidebar.prototype.showEmp = function () {
+    }
+    showEmp() {
         this.showTableRows();
         var employeepage = document.querySelector(".employee-page");
         var roledetailspage = document.querySelector(".roledetails-page");
@@ -1218,19 +1142,18 @@ var Sidebar = /** @class */ (function (_super) {
         else {
             employeepage.style.display = "none";
         }
-    };
-    Sidebar.prototype.showEmptyDisplay = function () {
-        var emppage = document.querySelector(".employee-page");
-        var roledetailspage = document.querySelector(".roledetails-page");
-        var rolepage = document.querySelector(".role-page");
+    }
+    showEmptyDisplay() {
+        let emppage = document.querySelector(".employee-page");
+        let roledetailspage = document.querySelector(".roledetails-page");
+        let rolepage = document.querySelector(".role-page");
         if (rolepage.style.display == "block" || roledetailspage.style.display == "block" || emppage.style.display == "block") {
             rolepage.style.display = "none";
             roledetailspage.style.display = "none";
             emppage.style.display = "none";
         }
-    };
-    return Sidebar;
-}(employee_1.EmployeeDetails));
+    }
+}
 exports.Sidebar = Sidebar;
 
 
@@ -1256,7 +1179,7 @@ exports.Sidebar = Sidebar;
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -1272,23 +1195,23 @@ var exports = __webpack_exports__;
   \**********************/
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var employee_1 = __webpack_require__(/*! ./employee */ "./src/employee.ts");
-var role_1 = __webpack_require__(/*! ./role */ "./src/role.ts");
-var addemployee_1 = __webpack_require__(/*! ./addemployee */ "./src/addemployee.ts");
-var addrole_1 = __webpack_require__(/*! ./addrole */ "./src/addrole.ts");
-var sidebar_1 = __webpack_require__(/*! ./sidebar */ "./src/sidebar.ts");
-var App = /** @class */ (function () {
-    function App() {
-        this.employeeobject = new employee_1.EmployeeDetails();
-        this.employeeobject.addDOMContentLoadedListener();
+const employee_1 = __webpack_require__(/*! ./employee */ "./src/employee.ts");
+const role_1 = __webpack_require__(/*! ./role */ "./src/role.ts");
+const addemployee_1 = __webpack_require__(/*! ./addemployee */ "./src/addemployee.ts");
+const addrole_1 = __webpack_require__(/*! ./addrole */ "./src/addrole.ts");
+const sidebar_1 = __webpack_require__(/*! ./sidebar */ "./src/sidebar.ts");
+class App {
+    constructor() {
         this.rolepageobject = new role_1.RolePage();
         this.addemployeeobject = new addemployee_1.AddEmployee();
         this.addroleobject = new addrole_1.AddRole();
         this.sidebar = new sidebar_1.Sidebar();
+        this.employeeobject = new employee_1.EmployeeDetails();
+        this.employeeobject.onload();
     }
-    return App;
-}());
-app = new App();
+}
+let app = new App();
+window.app = app;
 
 })();
 

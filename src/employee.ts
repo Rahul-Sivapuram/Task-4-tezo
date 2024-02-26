@@ -53,6 +53,42 @@ export class EmployeeDetails{
         ]
     };
 
+    onload():void{
+      document.addEventListener("DOMContentLoaded", () => {
+        this.insertPagesIntoContainer();
+      });
+    }
+
+    showFilterStatusDropdown(): void {
+      var list: HTMLDivElement = document.querySelector(".filtercheckbox-dropdownlist")! as HTMLDivElement;
+      var placeholder: HTMLDivElement = document.getElementById("filter-display1")! as HTMLDivElement;
+      console.log("work");
+      var chk: NodeListOf<HTMLInputElement> = document.querySelectorAll('input[type="checkbox"][name="filter-status"]');
+      
+      let arr: string[] = [];
+  
+      if (!list.style.display || list.style.display === "none") {
+          list.style.display = "flex";
+      } else {
+          list.style.display = "none";
+      }
+  
+      chk.forEach((checkbox) => {
+          checkbox.addEventListener("click", () => {
+              arr = []; 
+              chk.forEach((checkbox) => {
+                  if (checkbox.checked) {
+                      arr.push(checkbox.value);
+                  }
+              });
+  
+              this.statusArray = arr;
+              console.log(this.statusArray);
+              placeholder.innerText = this.statusArray.length + " Selected";
+          });
+      });
+    }
+  
     insertPagesIntoContainer():void {
       let pageContainer:HTMLDivElement = document.querySelector('.employee-page-section')! as HTMLDivElement;
       fetch('../employee.html')
@@ -63,10 +99,12 @@ export class EmployeeDetails{
               return response.text();
           })
           .then(html => {
-              pageContainer.innerHTML += html;
+              pageContainer.innerHTML += html;             
+              this.getDepartmentCount("UIUX","ProductEngg","IT");
+              this.alphabetStateChange();
           })
           .catch(error => console.error('Error fetching content:', error));
-  
+      
       fetch('../role.html')
           .then(response => {
               if (!response.ok) {
@@ -91,36 +129,32 @@ export class EmployeeDetails{
           })
           .catch(error => console.error('Error fetching content:', error));
     }
+    
+    handleFileInputChange(event:Event):void{
+      const fileInput:HTMLInputElement = document.getElementById("addFilePicker") as HTMLInputElement;
+      const profilepic:HTMLImageElement = document.querySelector(".profilepic") as HTMLImageElement;
 
-    addDOMContentLoadedListener():void{
-      document.addEventListener("DOMContentLoaded", () => {
-          this.insertPagesIntoContainer();
-      });
-    }
-    
-    handleFileInputChange():void{
-      let fileInput:HTMLInputElement=document.getElementById("addFilePicker")! as HTMLInputElement;
-      var profilepic:HTMLImageElement=document.querySelector(".profilepic")!;
-      fileInput.addEventListener('change',()=>{
-          const fr=new FileReader();
-          fr.readAsDataURL(fileInput.files![0]);
-          fr.addEventListener('load',()=>{
-          this.fileUrl!=fr.result;
-          profilepic.src=this.fileUrl;
+      if (event.target instanceof HTMLInputElement && event.target.files && event.target.files.length > 0) {
+        const fr = new FileReader();
+        fr.readAsDataURL(event.target.files[0]);
+        fr.addEventListener('load', () => {
+          this.fileUrl = fr.result as string; 
+          profilepic.src = this.fileUrl;
           console.log(this.fileUrl);
-          });
-      });
-      profilepic.src="assets/images/profile-user.png";
-      this.fileUrl="";
+        });
+      }
+      if (!profilepic.src || profilepic.src === "") {
+        profilepic.src = "assets/images/profile-user.png";
+      }
     }
-    
-    alphabetStateChange(){
+
+    alphabetStateChange():void{
       var containers = document.querySelectorAll(".alphabet");
       var previousContainer:any = null;
       var clickTimer:any;
       containers.forEach((container) =>{
           container.addEventListener("click", (event) => {
-              var spanValue = container.querySelector("span");
+              var spanValue:HTMLSpanElement = container.querySelector("span")! as HTMLSpanElement;
               if (clickTimer) {
                   clearTimeout(clickTimer);
                   clickTimer = null;
@@ -142,22 +176,13 @@ export class EmployeeDetails{
       });
     }
 
-    createMultiSelectDropDown():void{
-      let filterleft: HTMLDivElement = document.querySelector(".filter-left")! as HTMLDivElement;
-      let dropone: HTMLElement = this.createFilterDropdown(this.filterDropdownModel, "filter-dropdown-1", "filter-display1", "filtercheckbox-dropdownlist", this.showFilterStatusDropdown);
-      filterleft.appendChild(dropone);
-      let droptwo: HTMLElement = this.createFilterDropdown(this.filterDropdownModel2, "filter-dropdown-2", "filter-display2", "filtercheckbox-dropdownlist2", this.showFilterDepartmentDropdown);
-      filterleft.appendChild(droptwo);
-      let dropthree: HTMLElement = this.createFilterDropdown(this.filterDropdownModel3, "filter-dropdown-3", "filter-display3", "filtercheckbox-dropdownlist3", this.showFilterLocationDropdown);
-      filterleft.appendChild(dropthree);
-    }
-
-    createFilterDropdown(model:FilterMultiSelectDropDownModel, divId:string,spanId:string,dropDownId:string,callback:Function):HTMLDivElement {
-      var filterDropdownContainer = document.createElement("div");
+    createFilterDropdown(model:FilterMultiSelectDropDownModel,divId:string,spanId:string,dropDownId:string,callback:Function):HTMLDivElement {
+      let filterDropdownContainer = document.createElement("div");
       filterDropdownContainer.classList.add(divId);
-      filterDropdownContainer.onclick=function(){
-          callback();
-      };
+      filterDropdownContainer.addEventListener("click",()=>{
+        console.log("hi");
+      })
+      
       var filterDisplaySpan = document.createElement("span");
       filterDisplaySpan.id = spanId;
       filterDisplaySpan.textContent = model.filterDisplayName;
@@ -168,6 +193,7 @@ export class EmployeeDetails{
       arrowImg.width = 10;
       arrowImg.height = 10;
       filterDropdownContainer.appendChild(arrowImg);
+
       var dropdownListContainer = document.createElement("div");
       dropdownListContainer.classList.add(dropDownId);
       model.checkboxItems.forEach(function(item) {
@@ -203,12 +229,12 @@ export class EmployeeDetails{
           else if(val.DEPARTMENT == cat3 || val.DEPARTMENT == "Product Engg"){
           this.peCount += 1;
           }
-          let itBox:HTMLDivElement=document.querySelector(".department-button-square-one")!;
-          let uiuxBox:HTMLDivElement=document.querySelector(".department-button-square-two")!;
-          let peBox:HTMLDivElement=document.querySelector(".department-button-square-three")!;
-          itBox!.textContent=this.itCount.toString();
-          uiuxBox!.textContent=this.uiuxCount.toString();
-          peBox!.textContent=this.peCount.toString();
+          let itBox:HTMLDivElement=document.querySelector(".department-button-square-one")! as HTMLDivElement;
+          let uiuxBox:HTMLDivElement=document.querySelector(".department-button-square-two")! as HTMLDivElement;
+          let peBox:HTMLDivElement=document.querySelector(".department-button-square-three")! as HTMLDivElement;
+          itBox.textContent=this.itCount.toString();
+          uiuxBox.textContent=this.uiuxCount.toString();
+          peBox.textContent=this.peCount.toString();
       })
     }
 
@@ -311,90 +337,76 @@ export class EmployeeDetails{
     return tableRow;
     }
 
-    showFilterStatusDropdown():void{
-    var list:HTMLDivElement = document.querySelector(".filtercheckbox-dropdownlist")! as HTMLDivElement;
-    var placeholder:HTMLDivElement = document.getElementById("filter-display1")! as HTMLDivElement;
-    var chk:NodeListOf<HTMLInputElement>=document.querySelectorAll('input[type="checkbox"][name="filter-status"]');
-    if (!list.style.display || list.style.display === "none") {
-        list.style.display = "flex";
-    } else {
-        list.style.display = "none";
-    }
-    let arr:string[]=[];
-    chk.forEach((event)=>{
-        event.addEventListener("click",()=>{
-            let v=event.value;
-            if(event.checked){
-            arr.push(v);
-            }
-            else{
-            const index = arr.indexOf(v);
-            if (index !== -1) {
-                arr.splice(index, 1);
-            }
-            }
-            this.statusArray=arr;
-            placeholder.innerText=arr.length +" "+ "Selected";
-        });
-    });
-    }
-
-    showFilterDepartmentDropdown():void{
-    var list:HTMLDivElement = document.querySelector(".filtercheckbox-dropdownlist2")! as HTMLDivElement;
-    var placeholder:HTMLDivElement = document.getElementById("filter-display2")! as HTMLDivElement;
-    var chk:NodeListOf<HTMLInputElement>=document.querySelectorAll('input[type="checkbox"][name="filter-department"]');
-    if (!list.style.display || list.style.display === "none") {
-        list.style.display = "flex";
-    } else {
-        list.style.display = "none";
-    }
-    let arr:string[]=[]
-    chk.forEach((event)=>{
-        event.addEventListener("click",()=>{
-            let v=event.value;
-            if(event.checked){
-            arr.push(v);
-            }
-            else{
-            const index = arr.indexOf(v);
-            if (index !== -1) {
-                arr.splice(index, 1);
-            }
-            }
-            this.departmentArray=arr;
-            console.log(this.departmentArray);
-            placeholder.innerText=arr.length +" "+ "Selected";
-        });
-    });
-    }
-
-    showFilterLocationDropdown():void{
-      var list:HTMLDivElement = document.querySelector(".filtercheckbox-dropdownlist3")! as HTMLDivElement;
-      var placeholder:HTMLDivElement = document.getElementById("filter-display3") as HTMLDivElement;
-      var chk:NodeListOf<HTMLInputElement>=document.querySelectorAll('input[type="checkbox"][name="filter-location"]');
+    showFilterDepartmentDropdown(): void {
+      var list: HTMLDivElement = document.querySelector(".filtercheckbox-dropdownlist2")! as HTMLDivElement;
+      var placeholder: HTMLDivElement = document.getElementById("filter-display2")! as HTMLDivElement;
+      var chk: NodeListOf<HTMLInputElement> = document.querySelectorAll('input[type="checkbox"][name="filter-department"]');
+      
+      let arr: string[] = [];
+  
       if (!list.style.display || list.style.display === "none") {
           list.style.display = "flex";
       } else {
           list.style.display = "none";
       }
-      let arr:string[]=[];
-      chk.forEach((event)=>{
-          event.addEventListener("click",()=>{
-              let v=event.value;
-              if(event.checked){
-              arr.push(v);
-              }
-              else{
-              const index = arr.indexOf(v);
-              if (index !== -1) {
-                  arr.splice(index, 1);
-              }
-              }
-              this.locationArray=arr;
-              console.log(this.locationArray);
-              placeholder.innerText=arr.length +" "+ "Selected";
+  
+      chk.forEach((checkbox) => {
+          checkbox.addEventListener("click", () => {
+              arr = []; // Reset the array
+              
+              chk.forEach((checkbox) => {
+                  if (checkbox.checked) {
+                      arr.push(checkbox.value);
+                  }
+              });
+  
+              this.departmentArray = arr;
+              console.log(this.departmentArray);
+              placeholder.innerText = this.departmentArray.length + " Selected";
           });
       });
+    }
+  
+    showFilterLocationDropdown(): void {
+      var list: HTMLDivElement = document.querySelector(".filtercheckbox-dropdownlist3")! as HTMLDivElement;
+      var placeholder: HTMLSpanElement = document.getElementById("filter-display3") as HTMLSpanElement;
+      var chk: NodeListOf<HTMLInputElement> = document.querySelectorAll('input[type="checkbox"][name="filter-location"]');
+      if (!list.style.display || list.style.display === "none") {
+          list.style.display = "flex";
+      } else {
+          list.style.display = "none";
+      }
+      let arr:string[] = [];
+      chk.forEach((checkbox) => {
+          checkbox.addEventListener("click", () => {
+            arr = [];
+            chk.forEach((checkbox) => {
+                if (checkbox.checked) {
+                    arr.push(checkbox.value);
+                }
+            });
+
+              this.locationArray = arr;
+              console.log(this.locationArray);
+              placeholder.innerText = this.locationArray.length + " Selected";
+          });
+      });
+    }
+  
+    createMultiSelectDropDown():void{
+      let filterleft: HTMLDivElement = document.querySelector(".filter-left")! as HTMLDivElement;
+      if (filterleft) {
+        let dropone: HTMLDivElement = this.createFilterDropdown(this.filterDropdownModel, "filter-dropdown-1", "filter-display1", "filtercheckbox-dropdownlist", this.showFilterStatusDropdown);
+        filterleft.appendChild(dropone);
+        
+        let droptwo: HTMLDivElement = this.createFilterDropdown(this.filterDropdownModel2, "filter-dropdown-2", "filter-display2", "filtercheckbox-dropdownlist2", this.showFilterDepartmentDropdown);
+        filterleft.appendChild(droptwo);
+        
+        let dropthree: HTMLDivElement = this.createFilterDropdown(this.filterDropdownModel3, "filter-dropdown-3", "filter-display3", "filtercheckbox-dropdownlist3", this.showFilterLocationDropdown);
+        filterleft.appendChild(dropthree);
+    } else {
+        console.error("Element with class 'filter-left' not found.");
+    }
     }
    
     filterSection():void{
@@ -431,8 +443,8 @@ export class EmployeeDetails{
     
     deleteRow():void{
       const employeeDataString:string = localStorage.getItem('EmployeeData')!;
-      let employeeData = JSON.parse(employeeDataString);
-      const indextodelete = [15,16,17,18,19]; 
+      let employeeData:EmployeeModelDataTypes[] = JSON.parse(employeeDataString);
+      const indextodelete = [0]; 
       indextodelete.sort((a, b) => b - a);
       indextodelete.forEach(index => {
           if (index >= 0 && index < employeeData.length) {
@@ -449,14 +461,13 @@ export class EmployeeDetails{
     addToCsv():void{
       const table: HTMLTableElement | null = document.getElementById('UserTable') as HTMLTableElement;
       if (!table) return; 
-  
       const data: string[] = [];
       for (let i = 0; i < table.rows.length; i++) {
           const row: string[] = [];
           const tableRow = table.rows[i];
           for (let j = 0; j < tableRow.cells.length; j++) {
               const cell = tableRow.cells[j];
-              row.push(cell.textContent?.trim() ?? ''); // Use optional chaining and nullish coalescing operator
+              row.push(cell.textContent?.trim() ?? '');
           }
           data.push(row.join(','));
       }
@@ -471,7 +482,7 @@ export class EmployeeDetails{
     filterByAlphabet(inp:string):void{
       var table:HTMLTableElement = document.getElementById('UserTable')! as HTMLTableElement;
       var existingdata:string=localStorage.getItem("EmployeeData")!;
-      var array=JSON.parse(existingdata);
+      var array:EmployeeModelDataTypes[]=JSON.parse(existingdata);
       var ficon: HTMLImageElement | null =document.querySelector(".filter-image")as HTMLImageElement;
   
       if (table && existingdata && ficon) {
@@ -491,7 +502,7 @@ export class EmployeeDetails{
         if(filtered.length > 0){
           ficon.src="assets/images/filter.png";
           for(let j in filtered){
-            let res=this.createUserRow(filtered[j]);
+            let res:HTMLTableRowElement=this.createUserRow(filtered[j]);
             table.querySelector('tbody')!.appendChild(res);
           }
         }
@@ -503,7 +514,7 @@ export class EmployeeDetails{
   
     sortAccordToCol(inp:string):void{
       var existingdata:string=localStorage.getItem("EmployeeData")!;
-      var array=JSON.parse(existingdata);
+      var array:EmployeeModelDataTypes[]=JSON.parse(existingdata);
     
       array.sort((a:any, b:any) => {
         if (a[inp] < b[inp]) return -1;
@@ -516,7 +527,7 @@ export class EmployeeDetails{
     
       for(let i in array)
       {
-        let doc=this.createUserRow(array[i]);
+        let doc:HTMLTableRowElement=this.createUserRow(array[i]);
         table.querySelector('tbody')!.appendChild(doc);
       }
     }
@@ -534,7 +545,7 @@ export class EmployeeDetails{
       table.querySelector('tbody')!.innerHTML="";
       for(let i in array)
       {
-        let doc=this.createUserRow(array[i]);
+        let doc:HTMLTableRowElement=this.createUserRow(array[i]);
         table.querySelector('tbody')!.appendChild(doc);
       }
     }
@@ -546,7 +557,7 @@ export class EmployeeDetails{
       table.querySelector("tbody")!.innerHTML = "";
       for(let i in dataarray)
       {
-        let doc=this.createUserRow(dataarray[i]);
+        let doc:HTMLTableRowElement=this.createUserRow(dataarray[i]);
         table.querySelector('tbody')!.appendChild(doc);
       }
     }
@@ -565,7 +576,7 @@ export class EmployeeDetails{
     filterTableRows():void{
       var table:HTMLDivElement = document.getElementById('UserTable')! as HTMLDivElement;
       var data:string = localStorage.getItem("EmployeeData")!;
-      var dataarray = JSON.parse(data);
+      var dataarray:EmployeeModelDataTypes[] = JSON.parse(data);
     
       const filteredData = this.filterData(dataarray,this.statusArray, this.locationArray, this.departmentArray);
       setTimeout(()=> {
